@@ -2,25 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetCheckpoint : MonoBehaviour
+namespace HeroStory
 {
-    [SerializeField] Door m_DoorScript;
 
-    private Animator m_CheckedAnimation;
-    private bool m_IsChecked = false;
-
-    void Start()
+    public class Checkpoint : MonoBehaviour
     {
-        m_CheckedAnimation = GetComponent<Animator>();
-    }
+        [SerializeField] Door m_DoorScript;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player") && !m_IsChecked)
+
+        private Animator m_CheckedAnimation;
+        private bool m_IsChecked = false;
+
+        void Start()
         {
-            m_IsChecked = true;
-            m_DoorScript.ChangeNbChecked(1);
-            m_CheckedAnimation.SetBool("isChecked", true);
+            m_CheckedAnimation = GetComponent<Animator>();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player") && !m_IsChecked)
+            {
+                m_IsChecked = true;
+                m_DoorScript.ChangeNbChecked(1);
+                m_CheckedAnimation.SetBool("isChecked", true);
+
+            }
         }
     }
+
 }
