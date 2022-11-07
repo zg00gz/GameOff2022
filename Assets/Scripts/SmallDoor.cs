@@ -7,21 +7,20 @@ using UnityEngine.Timeline;
 namespace HeroStory
 {
 
-    public class Door : MonoBehaviour
+    public class SmallDoor : MonoBehaviour
     {
         [SerializeField] int m_NbRequired;
         [SerializeField] int m_UnlockRequired;
 
         private Animator m_CheckedAnimation;
-        private int m_NbChecked = 0;
-        private int m_NbUnlocked = 0;
+        private int m_NbChecked = 0; // CheckPoint
+        private int m_NbUnlocked = 0; // TODO => Le pot est détruit
 
         private GameManager m_GameManager;
         private PlayableDirector m_PlayableDirector;
 
         public bool IsChecked;
         public bool IsOpened;
-
 
         void Start()
         {

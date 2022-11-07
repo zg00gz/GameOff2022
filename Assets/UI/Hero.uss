@@ -1,0 +1,23 @@
+.hero-groupbox {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    top: 50px;
+    border-left-color: rgba(106, 106, 106, 255);
+    border-right-color: rgba(106, 106, 106, 255);
+    border-top-color: rgba(106, 106, 106, 255);
+    border-bottom-color: rgba(106, 106, 106, 255);
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(202, 202, 202, 0.2);
+}
+
+.hero-button {
+    background-color: rgba(178, 100, 0, 255);
+}

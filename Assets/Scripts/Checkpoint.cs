@@ -8,6 +8,8 @@ namespace HeroStory
     public class Checkpoint : MonoBehaviour
     {
         [SerializeField] Door m_DoorScript;
+        [SerializeField] Material m_InitialMaterial;
+        [SerializeField] Material m_CheckedMaterial;
 
 
         private Animator m_CheckedAnimation;
@@ -15,7 +17,7 @@ namespace HeroStory
 
         void Start()
         {
-            m_CheckedAnimation = GetComponent<Animator>();
+            //m_CheckedAnimation = GetComponent<Animator>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -24,9 +26,17 @@ namespace HeroStory
             {
                 m_IsChecked = true;
                 m_DoorScript.ChangeNbChecked(1);
-                m_CheckedAnimation.SetBool("isChecked", true);
-
+                GetComponent<MeshRenderer>().material = m_CheckedMaterial;
+                //GetComponent<MeshRenderer>().material = m_CheckedMaterial;
+                //GetComponent<MeshRenderer>().sharedMaterial = m_CheckedMaterial;
+                //m_CheckedAnimation.SetBool("isChecked", true);
             }
+            /*
+            var particlesSystem = Instantiate(particles, transform);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            particlesSystem.Play();
+            Destroy(gameObject, particlesSystem.main.duration);
+            */
         }
     }
 
