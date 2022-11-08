@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf497794925e0c4f9d5a9821e37846a, type: 3}
   m_Name: Level1-1
   m_EditorClassIdentifier: 
+  _IsShootEnabled: 0
   _SpawnPoints:
   - {x: -2, y: 0, z: -7}
   - {x: 18, y: 0, z: -7}
@@ -21,6 +22,10 @@ MonoBehaviour:
   _English:
     GroupLevelName: Ground rules
     LevelName: 'Beat around the bush '
+    GoWord: Go !!!!
+    EndWord: Well done !
   _French:
     GroupLevelName: "R\xE8gles de base"
     LevelName: Tourner autour du pot
+    GoWord: C'est parti !!!!
+    EndWord: "Bien jou\xE9 !"

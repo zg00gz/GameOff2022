@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf497794925e0c4f9d5a9821e37846a, type: 3}
   m_Name: Level1-2
   m_EditorClassIdentifier: 
+  _IsShootEnabled: 0
   _SpawnPoints:
   - {x: -2, y: 0, z: -7}
   - {x: 18, y: 0, z: -7}
@@ -21,6 +22,10 @@ MonoBehaviour:
   _English:
     GroupLevelName: Ground rules
     LevelName: Always look on the bright side
+    GoWord: Let's go !
+    EndWord: Well done !
   _French:
     GroupLevelName: "R\xE8gles de base"
     LevelName: "Regardez les choses du bon c\xF4t\xE9"
+    GoWord: Allons-y !
+    EndWord: "Bien jou\xE9 !"

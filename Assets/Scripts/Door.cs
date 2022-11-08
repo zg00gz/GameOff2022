@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 namespace HeroStory
 {
@@ -16,18 +13,15 @@ namespace HeroStory
         private int m_NbChecked = 0;
         private int m_NbUnlocked = 0;
 
-        private GameManager m_GameManager;
         private PlayableDirector m_PlayableDirector;
 
         public bool IsChecked;
         public bool IsOpened;
 
-
         void Start()
         {
             m_CheckedAnimation = GetComponent<Animator>();
             m_PlayableDirector = GetComponent<PlayableDirector>();
-            m_GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
 
         public void ChangeNbChecked(int value)
@@ -67,9 +61,10 @@ namespace HeroStory
                 gameObject.GetComponent<Collider>().isTrigger = false;
 
                 m_PlayableDirector.Play();
-                m_GameManager.NextStep();
+                GameManager.Instance.NextStep();
             }
         }
 
     }
+
 }

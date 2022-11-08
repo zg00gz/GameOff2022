@@ -25,7 +25,6 @@ namespace HeroStory
         public bool IsShootEnabled => _IsShootEnabled;
 
 
-
         #region Language
 
         [Serializable]
@@ -33,6 +32,8 @@ namespace HeroStory
         {
             public string GroupLevelName;
             public string LevelName;
+            public string GoWord;
+            public string EndWord;
         }
         [SerializeField]
         private EN _English;
@@ -42,15 +43,22 @@ namespace HeroStory
         {
             public string GroupLevelName;
             public string LevelName;
+            public string GoWord;
+            public string EndWord;
         }
         [SerializeField]
         private FR _French;
 
         private string _GroupLevelName;
         private string _LevelName;
+        private string _GoWord;
+        private string _EndWord;
+
         public string GroupLevelName => _GroupLevelName;
         public string LevelName => _LevelName;
-        
+        public string GoWord => _GoWord;
+        public string EndWord => _EndWord;
+
         public void SetLanguage(Lang _Language)
         {
             switch (_Language)
@@ -58,11 +66,15 @@ namespace HeroStory
                 case Lang.EN:
                     _GroupLevelName = _English.GroupLevelName;
                     _LevelName = _English.LevelName;
+                    _GoWord = _English.GoWord;
+                    _EndWord = _English.EndWord;
                     break;
 
                 case Lang.FR:
                     _GroupLevelName = _French.GroupLevelName;
                     _LevelName = _French.LevelName;
+                    _GoWord = _French.GoWord;
+                    _EndWord = _French.EndWord;
                     break;
             }
         }

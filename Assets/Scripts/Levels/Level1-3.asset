@@ -22,6 +22,10 @@ MonoBehaviour:
   _English:
     GroupLevelName: Ground rules
     LevelName: Keep the ball rolling
+    GoWord: Good luck !
+    EndWord: Well done !
   _French:
     GroupLevelName: "R\xE8gles de base"
     LevelName: Faire avancer les choses
+    GoWord: Bonne chance !
+    EndWord: "Bien jou\xE9 !"

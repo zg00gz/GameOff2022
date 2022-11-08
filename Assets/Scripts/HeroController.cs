@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HeroStory
@@ -7,18 +5,51 @@ namespace HeroStory
 
     public class HeroController : MonoBehaviour
     {
-        //private HeroInput m_Input;
-        protected Rigidbody m_Rigidbody; // Ou character controller ???
+        protected static HeroController s_Instance;
+        public static HeroController Instance { get { return s_Instance; } }
+        
+        private Rigidbody m_Rigidbody;
 
+        // Move
         public bool IsInputBlocked;
-        public float Speed = 5f;
-        public float RotationSmoothTime = 0.1f;
-        public float RotationSmoothVelocity;
+        [SerializeField] float m_Speed = 5f;
+        [SerializeField] float m_RotationSmoothTime = 0.1f;
+        [SerializeField] float m_RotationSmoothVelocity;
+        [SerializeField] ParticleSystem m_Shoot;
 
-        void Awake() // Start ?
+        // Action
+        public bool IsActionAvailable;
+        public Transform TargetAction;
+        public bool IsShootEnabled;
+
+        void Awake()
         {
-            m_Rigidbody = GetComponent<Rigidbody>();
+            if (s_Instance != null)
+            {
+                Debug.Log("HeroController - gameobject destroyed");
+                Destroy(gameObject);
+                return;
+            }
+            s_Instance = this;
 
+            m_Rigidbody = GetComponent<Rigidbody>();
+        }
+
+        void Update()
+        {
+            if(IsActionAvailable && Input.GetButtonDown("Jump") && !IsInputBlocked) // TODO action Fire2 clique droit + Bouton X ?
+            {
+                if(TargetAction != null)
+                {
+                    TargetAction.GetComponent<CodePoint>()?.PlayAction();
+                    TargetAction.GetComponent<ControllerPoint>()?.PlayAction();
+                }
+            }
+
+            if(!IsInputBlocked && IsShootEnabled && Input.GetButtonDown("Fire1")) // TODO Tire Fire1 clique gauche + Bouton A ?
+            {
+                m_Shoot.Play();
+            }
         }
 
         void FixedUpdate()
@@ -35,22 +66,11 @@ namespace HeroStory
             if (direction.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref RotationSmoothVelocity, RotationSmoothTime);
-
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_RotationSmoothVelocity, m_RotationSmoothTime);
                 m_Rigidbody.MoveRotation(Quaternion.Euler(0f, angle, 0f));
-                m_Rigidbody.MovePosition(transform.position + direction * Time.deltaTime * Speed);
+                m_Rigidbody.MovePosition(transform.position + direction * Time.deltaTime * m_Speed);
             }
         }
-
-        //public void MoveAuto(Vector3 position, float speed)
-        //{
-        //    float targetAngle = Mathf.Atan2(position.x, position.z) * Mathf.Rad2Deg;
-        //    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref RotationSmoothVelocity, RotationSmoothTime);
-
-        //    m_Rigidbody.MoveRotation(Quaternion.Euler(0f, angle, 0f));
-        //    //m_Rigidbody.MovePosition(transform.position + position * Time.deltaTime * speed);
-        //    transform.position = Vector3.Lerp(transform.position, position, speed);
-        //}
 
     }
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -30,22 +28,24 @@ namespace HeroStory
 
         private void OnDisable()
         {
-            //_Level1_1.UnregisterCallback<ClickEvent>(LoadScene("Hero-PreProto"));
+            _Level1_1.UnregisterCallback<ClickEvent>(LoadScene1);
+            _Level1_2.UnregisterCallback<ClickEvent>(LoadScene2);
+            _Level1_3.UnregisterCallback<ClickEvent>(LoadScene3);
         }
 
         private void LoadScene1(ClickEvent evt)
         {
-            SceneManager.LoadScene("Hero-PreProto");
+            SceneManager.LoadScene("Hero-Level-1-1");
         }
 
         private void LoadScene2(ClickEvent evt)
         {
-            SceneManager.LoadScene("Hero-PreProto2");
+            SceneManager.LoadScene("Hero-Level-1-2");
         }
 
         private void LoadScene3(ClickEvent evt)
         {
-            SceneManager.LoadScene("Hero-PreProto3");
+            SceneManager.LoadScene("Hero-Level-1-3");
         }
 
     }

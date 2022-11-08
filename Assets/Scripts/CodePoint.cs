@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HeroStory
@@ -10,12 +9,10 @@ namespace HeroStory
         [SerializeField] Door m_DoorScript;
         [SerializeField] float m_RotationChecked;
         private bool m_IsChecked;
-        private HeroController m_HeroController;
-
         
         void Start()
         {
-            m_HeroController = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroController>();
+            
         }
 
         public void PlayAction()
@@ -25,7 +22,7 @@ namespace HeroStory
 
         IEnumerator PlayRotation()
         {
-            m_HeroController.IsActionAvailable = false;
+            HeroController.Instance.IsActionAvailable = false;
 
             float lerpDuration = 0.2f;
             float timeElapsed = 0;
@@ -54,7 +51,7 @@ namespace HeroStory
                 m_DoorScript.ChangeNbChecked(1);
             }
 
-            m_HeroController.IsActionAvailable = true;
+            HeroController.Instance.IsActionAvailable = true;
         }
 
 
@@ -62,8 +59,8 @@ namespace HeroStory
         {
             if (other.CompareTag("Player"))
             {
-                m_HeroController.TargetAction = transform;
-                m_HeroController.IsActionAvailable = true;
+                HeroController.Instance.TargetAction = transform;
+                HeroController.Instance.IsActionAvailable = true;
             }
         }
 
@@ -71,8 +68,8 @@ namespace HeroStory
         {
             if (other.CompareTag("Player"))
             {
-                m_HeroController.TargetAction = null;
-                m_HeroController.IsActionAvailable = false;
+                HeroController.Instance.TargetAction = null;
+                HeroController.Instance.IsActionAvailable = false;
             }
         }
     }
