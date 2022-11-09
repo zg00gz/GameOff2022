@@ -8,12 +8,11 @@ namespace HeroStory
     {
         [SerializeField] int m_NbRequired;
         [SerializeField] int m_UnlockRequired;
+        [SerializeField] PlayableDirector m_PlayableDirector;
 
         private Animator m_CheckedAnimation;
-        private int m_NbChecked = 0;
-        private int m_NbUnlocked = 0;
-
-        private PlayableDirector m_PlayableDirector;
+        private int m_NbChecked;
+        private int m_NbUnlocked;
 
         public bool IsChecked;
         public bool IsOpened;
@@ -21,7 +20,6 @@ namespace HeroStory
         void Start()
         {
             m_CheckedAnimation = GetComponent<Animator>();
-            m_PlayableDirector = GetComponent<PlayableDirector>();
         }
 
         public void ChangeNbChecked(int value)
