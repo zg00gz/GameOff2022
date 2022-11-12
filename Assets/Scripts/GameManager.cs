@@ -33,7 +33,8 @@ namespace HeroStory
             HeroController.Instance.IsShootEnabled = LevelValues.IsShootEnabled;
             m_LevelTitle.text = LevelValues.LevelName;
 
-            StartCoroutine(PlayIntro());
+            //StartCoroutine(PlayIntro());
+            HeroController.Instance.IsInputBlocked = true;
         }
 
         void Update()
@@ -54,7 +55,8 @@ namespace HeroStory
 
             if (LevelValues.SpawnPoints.Length > m_LevelStep)
             {
-                StartCoroutine(PlayIntro());
+                //StartCoroutine(PlayIntro());
+                HeroController.Instance.IsInputBlocked = true;
             }
             else
             {
