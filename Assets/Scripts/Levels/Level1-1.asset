@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _IsShootEnabled: 0
   _SpawnPoints:
-  - {x: -2, y: 0, z: -7}
-  - {x: 18, y: 0, z: -7}
+  - {x: 0, y: 0, z: -7}
+  - {x: 15, y: 0, z: -7}
+  - {x: 35, y: 0, z: -7}
   _Time:
   - 0
+  - 10
   - 10
   _English:
     GroupLevelName: Ground rules

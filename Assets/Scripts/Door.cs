@@ -31,7 +31,7 @@ namespace HeroStory
                 if(m_NbUnlocked >= m_UnlockRequired)
                 {
                     Debug.Log("Door opened !");
-                    m_CheckedAnimation.SetBool("isChecked", true);
+                    m_CheckedAnimation.SetTrigger("open");
                 }
             }
             Debug.Log("m_NbChecked" + m_NbChecked);
@@ -46,7 +46,7 @@ namespace HeroStory
                 {
                     Debug.Log("Door opened !");
                     IsOpened = true;
-                    m_CheckedAnimation.SetBool("isChecked", true);
+                    m_CheckedAnimation.SetTrigger("open");
                 }
             }
         }
@@ -57,9 +57,9 @@ namespace HeroStory
             {
                 Debug.Log("Level done !");
                 gameObject.GetComponent<Collider>().isTrigger = false;
+                m_CheckedAnimation.SetTrigger("close");
 
-                m_PlayableDirector.Play();
-                GameManager.Instance.NextStep();
+                if(m_PlayableDirector != null) m_PlayableDirector.Play();
             }
         }
 

@@ -12,6 +12,7 @@ namespace HeroStory
 
         [SerializeField] float m_LerpSpeed = 4f;
         [SerializeField] LevelData m_LevelValues;
+        [SerializeField] TMPro.TextMeshPro m_GroupLevelTitle;
         [SerializeField] TMPro.TextMeshPro m_LevelTitle;
 
         private int m_LevelStep = 0;
@@ -31,10 +32,11 @@ namespace HeroStory
 
             LevelValues.SetLanguage(Lang.FR);
             HeroController.Instance.IsShootEnabled = LevelValues.IsShootEnabled;
+            m_GroupLevelTitle.text = LevelValues.GroupLevelName;
             m_LevelTitle.text = LevelValues.LevelName;
 
             //StartCoroutine(PlayIntro());
-            HeroController.Instance.IsInputBlocked = true;
+            //HeroController.Instance.IsInputBlocked = true;
         }
 
         void Update()
@@ -49,22 +51,21 @@ namespace HeroStory
             }
         }
 
+
         public void NextStep()
         {
-            m_LevelStep++;
-
             if (LevelValues.SpawnPoints.Length > m_LevelStep)
             {
-                //StartCoroutine(PlayIntro());
-                HeroController.Instance.IsInputBlocked = true;
+                StartCoroutine(MoveToSpawnPoint());
             }
             else
             {
                 Debug.Log("Fin du niveau");
             }
+            m_LevelStep++;
         }
-
-        IEnumerator PlayIntro()
+        
+        IEnumerator MoveToSpawnPoint()
         {
             HeroController.Instance.IsInputBlocked = true;
 
@@ -98,7 +99,9 @@ namespace HeroStory
                 yield return null;
             }
             //HeroController.Instance.GetComponent<Animator>().SetFloat("Speed_Multiplier", 1.0f);
+            HeroController.Instance.IsInputBlocked = false;
 
+            /*
             // TODO 3, 2, 1 Go !!!!! + animation Hero qui regarde le joueur
             int remainingTime = 3;
             //timeText.text = "Time: " + remainingTime;
@@ -111,6 +114,7 @@ namespace HeroStory
                 //if (remainingTime == 1) Text Go !!!!! 
                 if (remainingTime <= 0) HeroController.Instance.IsInputBlocked = false;
             }
+            */
         }
 
         void ChangePaused()

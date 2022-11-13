@@ -19,6 +19,12 @@ namespace HeroStory
                 m_DoorScript.ChangeNbChecked(1);
                 GetComponent<MeshRenderer>().material = m_CheckedMaterial;
             }
+            else if(other.CompareTag("Player") && m_IsChecked && !m_DoorScript.IsChecked)
+            {
+                m_IsChecked = false;
+                m_DoorScript.ChangeNbChecked(-1);
+                GetComponent<MeshRenderer>().material = m_InitialMaterial;
+            }
         }
     }
 
