@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -11,11 +12,15 @@ namespace HeroStory
         [SerializeField] PlayableDirector m_PlayableDirector;
 
         private Animator m_CheckedAnimation;
-        private int m_NbChecked;
-        private int m_NbUnlocked;
+        [SerializeField] int m_NbChecked;
+        [SerializeField] int m_NbUnlocked;
 
         public bool IsChecked;
         public bool IsOpened;
+        public event Action DoorChecked;
+        public event Action DoorOpened;
+        public event Action DoorExit;
+
 
         void Start()
         {
@@ -25,30 +30,39 @@ namespace HeroStory
         public void ChangeNbChecked(int value)
         {
             m_NbChecked += value;
+            Debug.Log("m_NbChecked = " + m_NbChecked);
+
             if (m_NbChecked >= m_NbRequired)
             {
                 IsChecked = true;
-                if(m_NbUnlocked >= m_UnlockRequired)
+                DoorChecked?.Invoke();
+
+                if (m_NbUnlocked >= m_UnlockRequired)
                 {
-                    Debug.Log("Door opened !");
-                    m_CheckedAnimation.SetTrigger("open");
+                    SetDoorOpened();
                 }
             }
-            Debug.Log("m_NbChecked" + m_NbChecked);
         }
         public void ChangeNbUnlocked(int value)
         {
             if (m_NbChecked >= m_NbRequired)
             {
                 m_NbUnlocked += value;
-                Debug.Log("m_NbUnlocked" + m_NbUnlocked);
+                Debug.Log("m_NbUnlocked = " + m_NbUnlocked);
+
                 if (m_NbUnlocked >= m_UnlockRequired)
                 {
-                    Debug.Log("Door opened !");
-                    IsOpened = true;
-                    m_CheckedAnimation.SetTrigger("open");
+                    SetDoorOpened();
                 }
             }
+        }
+
+        private void SetDoorOpened()
+        {
+            Debug.Log("Door opened !");
+            IsOpened = true;
+            m_CheckedAnimation.SetTrigger("open");
+            DoorOpened?.Invoke();
         }
 
         private void OnTriggerExit(Collider other)
@@ -60,6 +74,7 @@ namespace HeroStory
                 m_CheckedAnimation.SetTrigger("close");
 
                 if(m_PlayableDirector != null) m_PlayableDirector.Play();
+                DoorExit?.Invoke();
             }
         }
 

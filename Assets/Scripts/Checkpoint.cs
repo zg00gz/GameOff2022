@@ -8,24 +8,51 @@ namespace HeroStory
         [SerializeField] Door m_DoorScript;
         [SerializeField] Material m_InitialMaterial;
         [SerializeField] Material m_CheckedMaterial;
-        
-        private bool m_IsChecked = false;
+
+        [SerializeField] bool m_IsChecked = false;
+        [SerializeField] ParticleSystem m_Particles;
+
+        void Start()
+        {
+            m_DoorScript.DoorOpened += OnDoorOpened;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player") && !m_IsChecked)
+
+            if (other.CompareTag("Player") && !m_DoorScript.IsChecked)
             {
-                m_IsChecked = true;
-                m_DoorScript.ChangeNbChecked(1);
-                GetComponent<MeshRenderer>().material = m_CheckedMaterial;
+
+                if (m_IsChecked)
+                {
+                    m_IsChecked = false;
+                    m_DoorScript.ChangeNbChecked(-1);
+                    GetComponent<MeshRenderer>().material = m_InitialMaterial;
+                }
+                else
+                {
+                    m_IsChecked = true;
+                    m_DoorScript.ChangeNbChecked(1);
+                    GetComponent<MeshRenderer>().material = m_CheckedMaterial;
+                }
             }
-            else if(other.CompareTag("Player") && m_IsChecked && !m_DoorScript.IsChecked)
+
+        }
+
+        private void OnDoorOpened()
+        {
+            if(m_Particles != null)
             {
-                m_IsChecked = false;
-                m_DoorScript.ChangeNbChecked(-1);
-                GetComponent<MeshRenderer>().material = m_InitialMaterial;
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                m_Particles.Play();
+                Destroy(gameObject, 5.0f);
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
+
     }
 
 }

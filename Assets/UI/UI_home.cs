@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 namespace HeroStory
 {
 
-    public class UI_home : MonoBehaviour
+    public class UI_Home : MonoBehaviour
     {
         private Button _Level1_1;
         private Button _Level1_2;

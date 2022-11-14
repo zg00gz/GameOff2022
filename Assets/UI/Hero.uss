@@ -3,10 +3,10 @@
     right: 0;
     width: 50%;
     top: 50px;
-    border-left-color: rgba(106, 106, 106, 255);
-    border-right-color: rgba(106, 106, 106, 255);
-    border-top-color: rgba(106, 106, 106, 255);
-    border-bottom-color: rgba(106, 106, 106, 255);
+    border-left-color: rgb(106, 106, 106);
+    border-right-color: rgb(106, 106, 106);
+    border-top-color: rgb(106, 106, 106);
+    border-bottom-color: rgb(106, 106, 106);
     border-left-width: 5px;
     border-right-width: 5px;
     border-top-width: 5px;
@@ -19,5 +19,47 @@
 }
 
 .hero-button {
-    background-color: rgba(178, 100, 0, 255);
+    background-color: rgb(178, 100, 0);
+}
+
+.hero-groupbox-pause {
+    background-color: rgba(12, 9, 10, 0.5);
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.hero-label-time {
+    color: rgb(255, 255, 255);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100px;
+    height: 50px;
+    -unity-text-align: middle-center;
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    font-size: 30px;
+    -unity-font-style: bold;
 }

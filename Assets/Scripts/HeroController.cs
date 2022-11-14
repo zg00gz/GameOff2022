@@ -42,7 +42,7 @@ namespace HeroStory
                 if(TargetAction != null)
                 {
                     TargetAction.GetComponent<CodePoint>()?.PlayAction();
-                    TargetAction.GetComponent<ControllerPoint>()?.PlayAction();
+                    TargetAction.GetComponent<PointController>()?.PlayAction();
                 }
             }
 

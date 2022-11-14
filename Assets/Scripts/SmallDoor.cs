@@ -63,7 +63,7 @@ namespace HeroStory
                 gameObject.GetComponent<Collider>().isTrigger = false;
 
                 m_PlayableDirector.Play();
-                m_GameManager.NextStep();
+                m_GameManager.NextStep(90);
             }
         }
 

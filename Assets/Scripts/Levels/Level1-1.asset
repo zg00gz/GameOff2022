@@ -17,10 +17,12 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -7}
   - {x: 15, y: 0, z: -7}
   - {x: 35, y: 0, z: -7}
+  - {x: 40, y: 0, z: 7}
   _Time:
   - 0
-  - 10
-  - 10
+  - 0
+  - 0
+  - 60
   _English:
     GroupLevelName: Ground rules
     LevelName: 'Beat around the bush '
