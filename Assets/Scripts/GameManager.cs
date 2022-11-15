@@ -10,7 +10,6 @@ namespace HeroStory
         protected static GameManager s_Instance;
         public static GameManager Instance { get { return s_Instance; } }
 
-        [SerializeField] float m_LerpSpeed = 4f;
         [SerializeField] LevelData m_LevelValues;
         [SerializeField] TMPro.TextMeshPro m_GroupLevelTitle;
         [SerializeField] TMPro.TextMeshPro m_LevelTitle;
@@ -59,11 +58,11 @@ namespace HeroStory
             }
         }
 
-        public void NextStep(float rotation)
+        public void NextStep(float targetRotation)
         {
             if (LevelValues.SpawnPoints.Length > m_NextStep)
             {
-                StartCoroutine(MoveToSpawnPoint(rotation));
+                HeroController.Instance.MoveAuto(LevelValues.SpawnPoints[m_NextStep], targetRotation);
             }
             else
             {
@@ -72,57 +71,6 @@ namespace HeroStory
             m_NextStep++;
         }
         
-        IEnumerator MoveToSpawnPoint(float rotation)
-        {
-            HeroController.Instance.IsInputBlocked = true;
-
-            Vector3 startPos = HeroController.Instance.transform.position;
-            //Debug.Log(startPos.x +" "+ startPos.y + " " + startPos.z);
-            Vector3 endPos = LevelValues.SpawnPoints[m_NextStep];
-
-            float journeyLength = Vector3.Distance(startPos, endPos);
-            float startTime = Time.time;
-            float distanceCovered = (Time.time - startTime) * m_LerpSpeed;
-            float fractionOfJourney = distanceCovered / journeyLength;
-
-            //HeroController.Instance.GetComponent<Animator>().SetFloat("Speed_Multiplier", 0.5f);
-            while (fractionOfJourney < 1)
-            {
-                distanceCovered = (Time.time - startTime) * m_LerpSpeed;
-                fractionOfJourney = distanceCovered / journeyLength;
-                //HeroController.Instance.MoveAuto(endPos, fractionOfJourney);
-                // https://docs.unity3d.com/ScriptReference/Vector3.RotateTowards.html
-                /*
-                 transform.rotation = Quaternion.Slerp(startRotation, targetRotation, timeElapsed / lerpDuration);
-                 timeElapsed += Time.deltaTime;
-                 */
-
-                HeroController.Instance.transform.position = Vector3.Lerp(startPos, endPos, fractionOfJourney);
-                var rotationToward = Quaternion.RotateTowards(HeroController.Instance.transform.rotation, Quaternion.Euler(new Vector3(0, rotation, 0)), 50f * Time.deltaTime);
-
-                //m_Rigidbody.MoveRotation(rotation);
-                //TODO LookAt
-                HeroController.Instance.transform.rotation = rotationToward; // rotation
-                yield return null;
-            }
-            //HeroController.Instance.GetComponent<Animator>().SetFloat("Speed_Multiplier", 1.0f);
-            HeroController.Instance.IsInputBlocked = false;
-
-            /*
-            // TODO 3, 2, 1 Go !!!!! + animation Hero qui regarde le joueur
-            int remainingTime = 3;
-            //timeText.text = "Time: " + remainingTime;
-            while (HeroController.Instance.IsInputBlocked)
-            {
-                Debug.Log(remainingTime);
-                yield return new WaitForSeconds(1);
-                remainingTime--;
-                //timeText.text = "Time: " + remainingTime;
-                //if (remainingTime == 1) Text Go !!!!! 
-                if (remainingTime <= 0) HeroController.Instance.IsInputBlocked = false;
-            }
-            */
-        }
         
         public void Timer()
         {

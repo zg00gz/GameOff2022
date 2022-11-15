@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf497794925e0c4f9d5a9821e37846a, type: 3}
   m_Name: Level1-3
   m_EditorClassIdentifier: 
+  _LevelID: 3
   _IsShootEnabled: 1
   _SpawnPoints:
   - {x: 0, y: 0, z: -7}

@@ -14,16 +14,18 @@ namespace HeroStory
     public class LevelData : ScriptableObject
     {
         [SerializeField]
+        private int _LevelID;
+        [SerializeField]
         private bool _IsShootEnabled;
         [SerializeField]
         private Vector3[] _SpawnPoints;
         [SerializeField]
         private float[] _Time;
 
+        public int LevelID => _LevelID;
         public Vector3[] SpawnPoints => _SpawnPoints;
         public float[] Time => _Time;
         public bool IsShootEnabled => _IsShootEnabled;
-
 
         #region Language
 

@@ -69,7 +69,7 @@ namespace HeroStory
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Level done !");
+                Debug.Log("Door closed !");
                 gameObject.GetComponent<Collider>().isTrigger = false;
                 m_CheckedAnimation.SetTrigger("close");
 
