@@ -21,11 +21,18 @@ namespace HeroStory
         private Vector3[] _SpawnPoints;
         [SerializeField]
         private float[] _Time;
+        [SerializeField]
+        private int _RunIndex;
+        [SerializeField]
+        private float[] _RunCupTime;
 
         public int LevelID => _LevelID;
         public Vector3[] SpawnPoints => _SpawnPoints;
         public float[] Time => _Time;
         public bool IsShootEnabled => _IsShootEnabled;
+        public int RunIndex => _RunIndex;
+        public float[] RunCupTime => _RunCupTime;
+
 
         #region Language
 

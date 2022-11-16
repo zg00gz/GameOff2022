@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 namespace HeroStory
 {
 
@@ -11,11 +12,19 @@ namespace HeroStory
         public static GameManager Instance { get { return s_Instance; } }
 
         [SerializeField] LevelData m_LevelValues;
-        [SerializeField] TMPro.TextMeshPro m_GroupLevelTitle;
-        [SerializeField] TMPro.TextMeshPro m_LevelTitle;
-        [SerializeField] TMPro.TextMeshProUGUI m_GoWord;
+
+        [SerializeField] TMPro.TextMeshPro m_Text_GroupLevelTitle;
+        [SerializeField] TMPro.TextMeshPro m_Text_LevelTitle;
+        [SerializeField] TMPro.TextMeshPro m_Text_Time;
+        [SerializeField] TMPro.TextMeshPro m_Text_Best;
+        [SerializeField] TMPro.TextMeshPro[] m_Text_TimeCups;
+        [SerializeField] TMPro.TextMeshPro[] m_Text_TimeBest;
+        [SerializeField] TMPro.TextMeshProUGUI m_Text_GoWord;
+
         [SerializeField] UI_Level m_UI_Level;
         [SerializeField] Door m_LastDoorScript;
+
+        private float m_LevelStart;
 
         private float m_TimerStartTime;
         private float m_TimerEndTime;
@@ -35,12 +44,46 @@ namespace HeroStory
                 return;
             }
             s_Instance = this;
-
-            LevelValues.SetLanguage(Lang.FR);
+            
+            m_LevelStart = Time.time;
+            LevelValues.SetLanguage(PlayerLocal.Instance.HeroData.Profile.PlayerLanguage);
             HeroController.Instance.IsShootEnabled = LevelValues.IsShootEnabled;
-            m_GroupLevelTitle.text = LevelValues.GroupLevelName;
-            m_LevelTitle.text = LevelValues.LevelName;
-            m_GoWord.text = LevelValues.GoWord;
+            m_Text_GroupLevelTitle.text = LevelValues.GroupLevelName;
+            m_Text_LevelTitle.text = LevelValues.LevelName;
+            m_Text_GoWord.text = LevelValues.GoWord;
+
+            PlayerLocal.LevelText levelText = PlayerLocal.Instance.GetLevelText();
+            m_Text_Time.text = levelText.Time;
+            m_Text_Best.text = levelText.BestScore;
+
+            // Text times
+            float timeRun = LevelValues.Time[LevelValues.RunIndex];
+            m_Text_TimeCups[0].text = PlayerLocal.Instance.FormatTime(LevelValues.RunCupTime[0]);
+            m_Text_TimeCups[1].text = PlayerLocal.Instance.FormatTime(LevelValues.RunCupTime[1]);
+            m_Text_TimeCups[2].text = PlayerLocal.Instance.FormatTime(LevelValues.RunCupTime[2]);
+
+            // Text level scores
+            PlayerLocal.LevelSaveData levelScores = PlayerLocal.Instance.LoadScore(LevelValues.LevelID);
+            string levelScoreTimes = "";
+            string levelScorePlayers = "";
+            if (levelScores != null)
+            {
+                for(var i = 0; i < 5; i++)   
+                {
+                    if(levelScores.Scores.Count > i)
+                    {
+                        levelScoreTimes += levelScores.Scores[i].DisplayTime + "<br>";
+                        levelScorePlayers += levelScores.Scores[i].Player + "<br>";
+                    }
+                    else
+                    {
+                        levelScoreTimes += "--:--:---<br>";
+                        levelScorePlayers += "--------------------<br>";
+                    }
+                }
+            }
+            m_Text_TimeBest[0].text = levelScoreTimes;
+            m_Text_TimeBest[1].text = levelScorePlayers;
 
             m_LastDoorScript.DoorChecked += OnLastDoorChecked;
         }
@@ -75,7 +118,7 @@ namespace HeroStory
         public void Timer()
         {
             m_TimerStartTime = Time.time;
-            string textTime = FormatTime(LevelValues.Time[m_NextStep - 1]);
+            string textTime = PlayerLocal.Instance.FormatTime(LevelValues.Time[m_NextStep - 1]);
             Debug.Log(textTime);
             m_UI_Level.DisplayTimer(textTime);
             StartCoroutine( UpdateTimer(LevelValues.Time[m_NextStep-1]) );
@@ -86,7 +129,7 @@ namespace HeroStory
             {
                 yield return new WaitForSeconds(1.0f);
                 timeRemaining--;
-                string time = FormatTime(timeRemaining);
+                string time = PlayerLocal.Instance.FormatTime(timeRemaining);
                 m_UI_Level.UpdateTimer(time);
             }
 
@@ -103,26 +146,20 @@ namespace HeroStory
             IsLevelDone = true;
 
             float time = m_TimerEndTime - m_TimerStartTime; // TODO tester avec Pause ?
-            string displayTime = FormatTime(time, true);
-            // TODO Persistent data : enregistrer la valeur texte + valeur float
-            // dans un objet joueur (pour permettre multijoueur data, ou un fichier par joueur ?) => un fichier serait mieux
-            // 1 fichier par user et  fichier global best score par niveau => si pas de nom renseigné => par défaut : The player
+            string displayTime = PlayerLocal.Instance.FormatTime(time, true);
+            
+            if(PlayerLocal.Instance != null)
+            {
+                PlayerLocal.Instance.SaveLevel(
+                    PlayerLocal.Instance.HeroData.Profile.PlayerID,
+                    LevelValues.LevelID,
+                    Time.time - m_LevelStart,
+                    time,
+                    displayTime
+                );
+            }
+            
             m_UI_Level.ElapsedTimeScreen(displayTime);
-        }
-
-        public string FormatTime(float timeToDisplay, bool isWithMs = false)
-        {
-            float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-            float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-            if(!isWithMs)
-            {
-                return string.Format("{0:00}:{1:00}", minutes, seconds);
-            }
-            else
-            {
-                float milliSeconds = (timeToDisplay % 1) * 1000;
-                return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliSeconds);
-            }
         }
 
         void ChangePaused()

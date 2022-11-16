@@ -24,6 +24,11 @@ MonoBehaviour:
   - 0
   - 0
   - 60
+  _RunIndex: 3
+  _RunCupTime:
+  - 25
+  - 35
+  - 50
   _English:
     GroupLevelName: Ground rules
     LevelName: 'Beat around the bush '
