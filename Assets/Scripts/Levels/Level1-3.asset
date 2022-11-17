@@ -20,13 +20,15 @@ MonoBehaviour:
   _Time:
   - 0
   - 0
+  _RunIndex: 0
+  _RunCupTime: []
   _English:
     GroupLevelName: Ground rules
     LevelName: Keep the ball rolling
     GoWord: Good luck !
-    EndWord: GG !
+    EndWord: GG ! You are a star !
   _French:
     GroupLevelName: "R\xE8gles de base"
     LevelName: Faire avancer les choses
     GoWord: Bonne chance !
-    EndWord: GG !
+    EndWord: ' GG ! Tu es une star !'

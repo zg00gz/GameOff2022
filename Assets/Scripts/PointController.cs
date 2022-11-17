@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace HeroStory
@@ -16,12 +17,17 @@ namespace HeroStory
 
         public void PlayAction()
         {
-            if (!m_DoorScript.IsOpened && !m_IsUnlocked)
-            {
-                HeroController.Instance.IsActionAvailable = false;
-                m_ControllerAnimation.SetTrigger("animControl");
-            }
+            if (!m_DoorScript.IsOpened && !m_IsUnlocked) StartCoroutine(PlayRotation());
         }
+        IEnumerator PlayRotation()
+        {
+            HeroController.Instance.IsActionAvailable = false;
+            
+            yield return new WaitForSeconds(0.3f); // Fight animation
+            m_ControllerAnimation.SetTrigger("animControl");
+
+        }
+
         private void CheckAction()
         {
             Debug.Log("CheckAction");

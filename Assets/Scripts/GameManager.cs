@@ -70,7 +70,7 @@ namespace HeroStory
             {
                 for(var i = 0; i < 5; i++)   
                 {
-                    if(levelScores.Scores.Count > i)
+                    if(levelScores.Scores != null && levelScores.Scores.Count > i)
                     {
                         levelScoreTimes += levelScores.Scores[i].DisplayTime + "<br>";
                         levelScorePlayers += levelScores.Scores[i].Player + "<br>";
@@ -97,20 +97,26 @@ namespace HeroStory
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
+                if(m_Paused) ChangePaused();
                 SceneManager.LoadScene("Hero-Home");
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (m_Paused) ChangePaused();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
 
         public void NextStep(float targetRotation)
         {
-            if (LevelValues.SpawnPoints.Length > m_NextStep)
-            {
+            //if (LevelValues.SpawnPoints.Length > m_NextStep)
+            //{
                 HeroController.Instance.MoveAuto(LevelValues.SpawnPoints[m_NextStep], targetRotation);
-            }
-            else
-            {
-                Debug.Log("Fin du niveau");
-            }
+            //}
+            //else
+            //{
+            //    Debug.Log("Fin du niveau");
+            //}
             m_NextStep++;
         }
         
@@ -144,20 +150,20 @@ namespace HeroStory
         {
             m_TimerEndTime = Time.time;
             IsLevelDone = true;
+            //HeroController.Instance.IsInputBlocked = true;
+
+            //HeroController.Instance.RotateAuto();
 
             float time = m_TimerEndTime - m_TimerStartTime; // TODO tester avec Pause ?
             string displayTime = PlayerLocal.Instance.FormatTime(time, true);
             
-            if(PlayerLocal.Instance != null)
-            {
-                PlayerLocal.Instance.SaveLevel(
-                    PlayerLocal.Instance.HeroData.Profile.PlayerID,
-                    LevelValues.LevelID,
-                    Time.time - m_LevelStart,
-                    time,
-                    displayTime
-                );
-            }
+            PlayerLocal.Instance.SaveLevel(
+                PlayerLocal.Instance.HeroData.Profile.PlayerID,
+                LevelValues.LevelID,
+                Time.time - m_LevelStart,
+                time,
+                displayTime
+            );
             
             m_UI_Level.ElapsedTimeScreen(displayTime);
         }
@@ -168,17 +174,21 @@ namespace HeroStory
             {
                 m_Paused = true;
                 Debug.Log("Game paused !");
-                //m_PauseScreen.SetActive(true);
+                m_UI_Level.DisplayPause();
                 Time.timeScale = 0;
             }
             else
             {
                 m_Paused = false;
                 Debug.Log("Game unpaused !");
-                //m_PauseScreen.SetActive(false);
+                m_UI_Level.HidePause();
                 Time.timeScale = 1;
             }
         }
 
+        public void GoHome()
+        {
+            SceneManager.LoadScene("Hero-Home");
+        }
     }
 }

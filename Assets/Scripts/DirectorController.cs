@@ -12,13 +12,21 @@ namespace HeroStory
         void Start()
         {
             m_PlayableDirector = GetComponent<PlayableDirector>();
-            m_DoorScript.DoorOpened += OnDoorOpened;
+            if(m_DoorScript != null) m_DoorScript.DoorOpened += OnDoorOpened;
         }
 
         private void OnDoorOpened()
         {
             //Debug.Log(m_PlayableDirector.name);
             m_PlayableDirector.Play();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                m_PlayableDirector.Play();
+            }
         }
     }
 

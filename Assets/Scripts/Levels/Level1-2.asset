@@ -15,18 +15,29 @@ MonoBehaviour:
   _LevelID: 2
   _IsShootEnabled: 0
   _SpawnPoints:
-  - {x: -2, y: 0, z: -7}
+  - {x: 0, y: 0, z: -7}
   - {x: 18, y: 0, z: -7}
+  - {x: 35, y: 0, z: -7}
+  - {x: 40, y: 0, z: 7}
+  - {x: 40, y: 0, z: 65}
   _Time:
   - 0
   - 0
+  - 0
+  - 120
+  - 0
+  _RunIndex: 0
+  _RunCupTime:
+  - 40
+  - 60
+  - 100
   _English:
     GroupLevelName: Ground rules
     LevelName: Always look on the bright side
     GoWord: Let's go !
-    EndWord: Well done !
+    EndWord: Well done ! <br>Thanks for playing my game !
   _French:
     GroupLevelName: "R\xE8gles de base"
     LevelName: "Regardez les choses du bon c\xF4t\xE9"
     GoWord: Allons-y !
-    EndWord: "Bien jou\xE9 !"
+    EndWord: "Bien jou\xE9 ! <br>Merci de jouer \xE0 mon jeu ! "

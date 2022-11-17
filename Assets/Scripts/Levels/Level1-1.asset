@@ -19,11 +19,13 @@ MonoBehaviour:
   - {x: 15, y: 0, z: -7}
   - {x: 35, y: 0, z: -7}
   - {x: 40, y: 0, z: 7}
+  - {x: 40, y: 0, z: 65}
   _Time:
   - 0
   - 0
   - 0
   - 60
+  - 0
   _RunIndex: 3
   _RunCupTime:
   - 25

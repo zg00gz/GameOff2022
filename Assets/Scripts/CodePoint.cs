@@ -28,7 +28,9 @@ namespace HeroStory
             float timeElapsed = 0;
             Quaternion startRotation = transform.rotation;
             Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90, 0);
-            
+
+            yield return new WaitForSeconds(0.4f); // Fight animation
+
             while (timeElapsed < lerpDuration)
             {
                 transform.rotation = Quaternion.Slerp(startRotation, targetRotation, timeElapsed / lerpDuration);
@@ -38,7 +40,7 @@ namespace HeroStory
             transform.rotation = targetRotation;
 
             Debug.Log("PlayRotation - " + transform.eulerAngles.y + " - " + m_RotationChecked + " - " + m_RotationChecked);
-            if (m_IsChecked && Mathf.RoundToInt(transform.eulerAngles.y) != m_RotationChecked) // Values inspector : 0, 90, ,-180, -90 => reals eulerAngles values => 0, 90, 180, 270
+            if (m_IsChecked && Mathf.RoundToInt(transform.eulerAngles.y) != m_RotationChecked) // Values inspector : 0, 90, ,-180, -90 => reals eulerAngles values to set => 0, 90, 180, 270
             {
                 Debug.Log("Unchecked");
                 m_IsChecked = false;

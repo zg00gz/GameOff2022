@@ -26,6 +26,7 @@ namespace HeroStory
         public bool IsActionAvailable;
         public Transform TargetAction;
         public bool IsShootEnabled;
+        public bool IsFightEnabled;
         public bool IsWalking;
         
 
@@ -44,9 +45,14 @@ namespace HeroStory
 
         void Update()
         {
-            if(IsActionAvailable && Input.GetButtonDown("Jump") && !IsInputBlocked) // TODO action Fire2 clique droit + Bouton X ?
+            //if(IsActionAvailable && Input.GetButtonDown("Jump") && !IsInputBlocked) 
+            // IsActionAvailable à utiliser pour les levier et animation spécifique ?
+            // TODO action Fire2 clique droit + Bouton X ?
+            if (!IsInputBlocked && Input.GetButtonDown("Jump"))
             {
-                if(TargetAction != null)
+                m_ArmatureAnimation.SetTrigger("fight");
+
+                if (IsActionAvailable && TargetAction != null)
                 {
                     TargetAction.GetComponent<CodePoint>()?.PlayAction();
                     TargetAction.GetComponent<PointController>()?.PlayAction();
@@ -70,7 +76,7 @@ namespace HeroStory
 
         private void Move(Vector3 direction)
         {
-            if (direction.magnitude >= 0.1f)
+            if (direction.magnitude >= 0.1f && !IsFightEnabled)
             {
                 if (!IsWalking) SetIsWalking(true);
                 
@@ -96,8 +102,9 @@ namespace HeroStory
         }
         IEnumerator MoveToPoint(Vector3 targetPosition, float targetRotation)
         {
-            HeroController.Instance.IsInputBlocked = true;
-            HeroController.Instance.SetIsWalking(true);
+            IsInputBlocked = true;
+            SetIsWalking(true);
+            Debug.Log("MoveToPoint - Start");
 
             Vector3 startPos = HeroController.Instance.transform.position;
             Vector3 endPos = targetPosition;
@@ -109,21 +116,45 @@ namespace HeroStory
 
             while (fractionOfJourney < 1)
             {
+                // Position
                 distanceCovered = (Time.time - startTime) * m_AutoLerpSpeed;
                 fractionOfJourney = distanceCovered / journeyLength;
+                transform.position = Vector3.Lerp(startPos, endPos, fractionOfJourney);
 
-                HeroController.Instance.transform.position = Vector3.Lerp(startPos, endPos, fractionOfJourney);
-                var rotationToward = Quaternion.RotateTowards(HeroController.Instance.transform.rotation, 
-                    Quaternion.Euler(new Vector3(0, targetRotation, 0)), m_AutoRotateSpeed * Time.deltaTime);
+                // Rotation
+                var rotationToward = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, targetRotation, 0)), m_AutoRotateSpeed * Time.deltaTime);
+                transform.rotation = rotationToward;
 
-                HeroController.Instance.transform.rotation = rotationToward;
+                yield return null;
+            }
+            Debug.Log("MoveToPoint - END");
+            SetIsWalking(false);
+            IsInputBlocked = false;
+        }
+        /*
+        public void RotateAuto(Vector3 targetPosition)
+        {
+            StartCoroutine(RotateToPoint(targetPosition));
+        }
+        IEnumerator RotateToPoint(Vector3 targetPosition)
+        {
+            IsInputBlocked = true;
+
+            Vector3 startPos = HeroController.Instance.transform.position;
+            Vector3 endPos = targetPosition;
+            float targetAngle = Mathf.Atan2(startPos.x, endPos.z) * Mathf.Rad2Deg - 180;
+
+            while (transform.rotation != Quaternion.Euler(new Vector3(0, targetAngle, 0)))
+            {
+                var rotationToward = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, targetAngle, 0)), m_AutoRotateSpeed * Time.deltaTime);
+                transform.rotation = rotationToward;
+
                 yield return null;
             }
 
-            HeroController.Instance.SetIsWalking(false);
-            HeroController.Instance.IsInputBlocked = false;
+            IsInputBlocked = false;
         }
-
+        */
     }
 
 }

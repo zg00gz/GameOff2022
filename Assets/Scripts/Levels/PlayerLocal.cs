@@ -11,9 +11,8 @@ namespace HeroStory
     public class PlayerLocal : MonoBehaviour
     {
         public static PlayerLocal Instance;
-        private Dictionary<string, string> m_ExistingProfiles;
-        public Dictionary<string, string> ExistingProfiles => m_ExistingProfiles;
 
+        public List<ProfileData> ExistingProfiles;
         public SaveData HeroData;
 
         private void Awake()
@@ -61,9 +60,7 @@ namespace HeroStory
 
         public void GetExistingProfiles()
         {
-            Debug.Log(Application.persistentDataPath);
-
-            m_ExistingProfiles = new Dictionary<string, string>();
+            List<ProfileData> existingProfiles = new List<ProfileData>();
             
             DirectoryInfo d = new DirectoryInfo(Application.persistentDataPath);
             FileInfo[] files = d.GetFiles("P_*.json");
@@ -76,14 +73,14 @@ namespace HeroStory
                     string json = File.ReadAllText(Application.persistentDataPath + "/"+file.Name);
                     SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-                    m_ExistingProfiles.Add(data.Profile.PlayerID, data.Profile.PlayerName);
+                    existingProfiles.Add(data.Profile);
                 }
                 catch
                 {
                     Debug.Log("Cannot access " + Application.persistentDataPath + " - PlayerLocal data not saved");
                 }
             }
-            m_ExistingProfiles.OrderBy(p => p.Value);
+            ExistingProfiles = existingProfiles.OrderBy(p => p.PlayerName).ToList();
         }
         
         public void SaveProfile(ProfileData profile)
@@ -93,7 +90,8 @@ namespace HeroStory
             if (String.IsNullOrEmpty(profile.PlayerID))
             {
                 profile.PlayerID = Guid.NewGuid().ToString("N");
-                m_ExistingProfiles.Add(profile.PlayerID, profile.PlayerName);
+                ExistingProfiles.Add(profile);
+                ExistingProfiles = ExistingProfiles.OrderBy(p => p.PlayerName).ToList();
                 data.Profile = new ProfileData();
                 data.Levels = new List<Level>();
             }
@@ -211,7 +209,7 @@ namespace HeroStory
                 DisplayTime = displayTime,
                 Date = DateTime.Now.ToString()
             });
-            data.Scores = data.Scores.OrderBy(s => s.Time).Take(5).ToList();
+            data.Scores = data.Scores.OrderBy(s => s.Time).Take(10).ToList();
             
             try
             {
