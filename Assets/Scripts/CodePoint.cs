@@ -8,12 +8,7 @@ namespace HeroStory
     {
         [SerializeField] Door m_DoorScript;
         [SerializeField] float m_RotationChecked;
-        private bool m_IsChecked;
-        
-        void Start()
-        {
-            
-        }
+        [SerializeField] bool m_IsChecked;
 
         public void PlayAction()
         {
@@ -29,7 +24,7 @@ namespace HeroStory
             Quaternion startRotation = transform.rotation;
             Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90, 0);
 
-            yield return new WaitForSeconds(0.4f); // Fight animation
+            yield return new WaitForSeconds(0.45f); // Fight animation
 
             while (timeElapsed < lerpDuration)
             {

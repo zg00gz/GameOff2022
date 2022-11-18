@@ -10,13 +10,14 @@ namespace HeroStory
         public static HeroController Instance { get { return s_Instance; } }
         
         private Rigidbody m_Rigidbody;
+        private Shoot m_Shoot;
 
         // Move
         public bool IsInputBlocked;
         [SerializeField] float m_Speed = 5f;
         [SerializeField] float m_RotationSmoothTime = 0.1f;
         [SerializeField] float m_RotationSmoothVelocity;
-        [SerializeField] ParticleSystem m_Shoot;
+        //[SerializeField] ParticleSystem m_Shoot;
         [SerializeField] Animator m_ArmatureAnimation;
         // Move auto
         [SerializeField] float m_AutoLerpSpeed = 4f;
@@ -41,6 +42,7 @@ namespace HeroStory
             s_Instance = this;
 
             m_Rigidbody = GetComponent<Rigidbody>();
+            m_Shoot = GetComponentInChildren<Shoot>();
         }
 
         void Update()
@@ -56,12 +58,13 @@ namespace HeroStory
                 {
                     TargetAction.GetComponent<CodePoint>()?.PlayAction();
                     TargetAction.GetComponent<PointController>()?.PlayAction();
+                    TargetAction.GetComponent<VerinController>()?.PlayAction();
                 }
             }
 
             if(!IsInputBlocked && IsShootEnabled && Input.GetButtonDown("Fire1")) // TODO Tire Fire1 clique gauche + Bouton A ?
             {
-                m_Shoot.Play();
+                m_Shoot.Fire(1);
             }
         }
 
@@ -104,7 +107,7 @@ namespace HeroStory
         {
             IsInputBlocked = true;
             SetIsWalking(true);
-            Debug.Log("MoveToPoint - Start");
+            //Debug.Log("MoveToPoint - Start");
 
             Vector3 startPos = HeroController.Instance.transform.position;
             Vector3 endPos = targetPosition;
@@ -127,34 +130,11 @@ namespace HeroStory
 
                 yield return null;
             }
-            Debug.Log("MoveToPoint - END");
+            //Debug.Log("MoveToPoint - END");
             SetIsWalking(false);
             IsInputBlocked = false;
         }
-        /*
-        public void RotateAuto(Vector3 targetPosition)
-        {
-            StartCoroutine(RotateToPoint(targetPosition));
-        }
-        IEnumerator RotateToPoint(Vector3 targetPosition)
-        {
-            IsInputBlocked = true;
 
-            Vector3 startPos = HeroController.Instance.transform.position;
-            Vector3 endPos = targetPosition;
-            float targetAngle = Mathf.Atan2(startPos.x, endPos.z) * Mathf.Rad2Deg - 180;
-
-            while (transform.rotation != Quaternion.Euler(new Vector3(0, targetAngle, 0)))
-            {
-                var rotationToward = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(new Vector3(0, targetAngle, 0)), m_AutoRotateSpeed * Time.deltaTime);
-                transform.rotation = rotationToward;
-
-                yield return null;
-            }
-
-            IsInputBlocked = false;
-        }
-        */
     }
 
 }

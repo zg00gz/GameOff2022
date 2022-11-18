@@ -16,19 +16,28 @@ MonoBehaviour:
   _IsShootEnabled: 1
   _SpawnPoints:
   - {x: 0, y: 0, z: -7}
-  - {x: 20, y: 0, z: -7}
+  - {x: 18, y: 0, z: -7}
+  - {x: 35, y: 0, z: -7}
+  - {x: 40, y: 0, z: 7}
+  - {x: 40, y: 0, z: 65}
   _Time:
   - 0
   - 0
-  _RunIndex: 0
-  _RunCupTime: []
+  - 0
+  - 200
+  - 0
+  _RunIndex: 4
+  _RunCupTime:
+  - 60
+  - 100
+  - 180
   _English:
     GroupLevelName: Ground rules
     LevelName: Keep the ball rolling
     GoWord: Good luck !
-    EndWord: GG ! You are a star !
+    EndWord: GG ! You are a star !!!
   _French:
     GroupLevelName: "R\xE8gles de base"
     LevelName: Faire avancer les choses
     GoWord: Bonne chance !
-    EndWord: ' GG ! Tu es une star !'
+    EndWord: ' GG ! Tu es une star !!!'

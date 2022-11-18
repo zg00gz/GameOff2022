@@ -1,14 +1,21 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace HeroStory
 {
 
-    public class PointController : MonoBehaviour
+    public class VerinController : MonoBehaviour
     {
-        [SerializeField] Door m_DoorScript;
-        private bool m_IsUnlocked;
         private Animator m_ControllerAnimation;
+
+        [SerializeField] Animator m_VerinAnimation;
+        [SerializeField] Verin m_Verin;
+
+        [SerializeField] bool m_IsAuto;
+        [SerializeField] bool m_IsToggle;
+        [SerializeField] bool m_IsToggleOpen;
+
 
         void Start()
         {
@@ -17,37 +24,49 @@ namespace HeroStory
 
         public void PlayAction()
         {
-            if (!m_DoorScript.IsOpened && !m_IsUnlocked) StartCoroutine(PlayRotation());
+            Debug.Log("VerinController - PlayAction");
+            StartCoroutine(PlayMove());
         }
-        IEnumerator PlayRotation()
+        IEnumerator PlayMove()
         {
             HeroController.Instance.IsActionAvailable = false;
-            
+
             yield return new WaitForSeconds(0.4f); // Fight animation
             m_ControllerAnimation.SetTrigger("animControl");
 
+            if( (!m_IsToggleOpen || m_IsAuto) && m_Verin.IsInteractable)
+            {
+                Debug.Log("VerinController - Open");
+                m_VerinAnimation.SetTrigger("open");
+            }
+            else if( m_IsToggleOpen && m_Verin.IsInteractable)
+            {
+                Debug.Log("VerinController - Close");
+                m_VerinAnimation.SetTrigger("close");
+            }
         }
 
         private void CheckAction()
         {
             Debug.Log("CheckAction");
-            if (m_DoorScript.IsChecked)
+            m_ControllerAnimation.SetTrigger("animBack");
+
+            if (m_IsAuto)
             {
-                m_DoorScript.ChangeNbUnlocked(1);
-                m_IsUnlocked = true;
-                HeroController.Instance.IsActionAvailable = true;
+                Debug.Log("VerinController - Close AUTO");
+                m_VerinAnimation.SetTrigger("close");
             }
             else
             {
-                m_ControllerAnimation.SetTrigger("animBack");
+                m_IsToggleOpen = true;
             }
+            HeroController.Instance.IsActionAvailable = true;
         }
         private void BackAction()
         {
-            Debug.Log("DoneAction");
+            m_IsToggleOpen = false;
             HeroController.Instance.IsActionAvailable = true;
         }
-
 
         private void OnTriggerEnter(Collider other)
         {
@@ -66,6 +85,7 @@ namespace HeroStory
                 HeroController.Instance.IsActionAvailable = false;
             }
         }
+
     }
 
 }

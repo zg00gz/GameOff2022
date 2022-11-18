@@ -12,7 +12,7 @@ namespace HeroStory
     {
         public static PlayerLocal Instance;
 
-        public List<ProfileData> ExistingProfiles;
+        public List<ProfileData> ExistingProfiles = null;
         public SaveData HeroData;
 
         private void Awake()

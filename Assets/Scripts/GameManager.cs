@@ -31,6 +31,8 @@ namespace HeroStory
         public bool IsLevelDone;
 
         private int m_NextStep = 0;
+        public  int CurrentStep;
+
         private bool m_Paused;
 
         public LevelData LevelValues => m_LevelValues;
@@ -57,7 +59,7 @@ namespace HeroStory
             m_Text_Best.text = levelText.BestScore;
 
             // Text times
-            float timeRun = LevelValues.Time[LevelValues.RunIndex];
+            //float timeRun = LevelValues.Time[LevelValues.RunIndex];
             m_Text_TimeCups[0].text = PlayerLocal.Instance.FormatTime(LevelValues.RunCupTime[0]);
             m_Text_TimeCups[1].text = PlayerLocal.Instance.FormatTime(LevelValues.RunCupTime[1]);
             m_Text_TimeCups[2].text = PlayerLocal.Instance.FormatTime(LevelValues.RunCupTime[2]);
@@ -66,20 +68,18 @@ namespace HeroStory
             PlayerLocal.LevelSaveData levelScores = PlayerLocal.Instance.LoadScore(LevelValues.LevelID);
             string levelScoreTimes = "";
             string levelScorePlayers = "";
-            if (levelScores != null)
+
+            for(var i = 0; i < 5; i++)
             {
-                for(var i = 0; i < 5; i++)   
+                if(levelScores.Scores != null && levelScores.Scores.Count > i)
                 {
-                    if(levelScores.Scores != null && levelScores.Scores.Count > i)
-                    {
-                        levelScoreTimes += levelScores.Scores[i].DisplayTime + "<br>";
-                        levelScorePlayers += levelScores.Scores[i].Player + "<br>";
-                    }
-                    else
-                    {
-                        levelScoreTimes += "--:--:---<br>";
-                        levelScorePlayers += "--------------------<br>";
-                    }
+                    levelScoreTimes += levelScores.Scores[i].DisplayTime + "<br>";
+                    levelScorePlayers += levelScores.Scores[i].Player + "<br>";
+                }
+                else
+                {
+                    levelScoreTimes += "--:--:---<br>";
+                    levelScorePlayers += "--------------------<br>";
                 }
             }
             m_Text_TimeBest[0].text = levelScoreTimes;
@@ -111,7 +111,8 @@ namespace HeroStory
         {
             //if (LevelValues.SpawnPoints.Length > m_NextStep)
             //{
-                HeroController.Instance.MoveAuto(LevelValues.SpawnPoints[m_NextStep], targetRotation);
+            CurrentStep = m_NextStep;
+            HeroController.Instance.MoveAuto(LevelValues.SpawnPoints[m_NextStep], targetRotation);
             //}
             //else
             //{
@@ -125,7 +126,7 @@ namespace HeroStory
         {
             m_TimerStartTime = Time.time;
             string textTime = PlayerLocal.Instance.FormatTime(LevelValues.Time[m_NextStep - 1]);
-            Debug.Log(textTime);
+            //Debug.Log(textTime);
             m_UI_Level.DisplayTimer(textTime);
             StartCoroutine( UpdateTimer(LevelValues.Time[m_NextStep-1]) );
         }
@@ -173,14 +174,14 @@ namespace HeroStory
             if (!m_Paused)
             {
                 m_Paused = true;
-                Debug.Log("Game paused !");
+                //Debug.Log("Game paused !");
                 m_UI_Level.DisplayPause();
                 Time.timeScale = 0;
             }
             else
             {
                 m_Paused = false;
-                Debug.Log("Game unpaused !");
+                //Debug.Log("Game unpaused !");
                 m_UI_Level.HidePause();
                 Time.timeScale = 1;
             }

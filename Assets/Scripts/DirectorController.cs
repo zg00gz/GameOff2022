@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -7,7 +8,11 @@ namespace HeroStory
     public class DirectorController : MonoBehaviour
     {
         [SerializeField] Door m_DoorScript;
+
+        [SerializeField] float m_HeroRotationTarget;
+        [SerializeField] Vector3 m_HeroPositionTarget;
         private PlayableDirector m_PlayableDirector;
+        
 
         void Start()
         {
@@ -17,16 +22,24 @@ namespace HeroStory
 
         private void OnDoorOpened()
         {
-            //Debug.Log(m_PlayableDirector.name);
             m_PlayableDirector.Play();
         }
 
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            // LevelDone
+            if (other.CompareTag("Player") && GameManager.Instance.IsLevelDone)
             {
-                m_PlayableDirector.Play();
+                GameManager.Instance.NextStep(m_HeroRotationTarget);
+                StartCoroutine(PlayDirectorEnd());
             }
+        }
+        IEnumerator PlayDirectorEnd()
+        {   
+            Vector3 targetPosition = GameManager.Instance.LevelValues.SpawnPoints[GameManager.Instance.CurrentStep];
+            yield return new WaitUntil(() => HeroController.Instance.transform.position == targetPosition );
+            m_PlayableDirector.Play();
         }
     }
 
