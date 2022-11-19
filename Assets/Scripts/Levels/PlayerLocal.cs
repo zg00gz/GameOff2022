@@ -61,29 +61,32 @@ namespace HeroStory
         public void GetExistingProfiles()
         {
             List<ProfileData> existingProfiles = new List<ProfileData>();
-            
-            DirectoryInfo d = new DirectoryInfo(Application.persistentDataPath);
-            FileInfo[] files = d.GetFiles("P_*.json");
 
-            foreach (var file in files)
+            try
             {
-                Debug.Log("GetExistingProfiles - " + file.Name);
-                try
+                DirectoryInfo d = new DirectoryInfo(Application.persistentDataPath);
+                FileInfo[] files = d.GetFiles("P_*.json");
+
+                foreach (var file in files)
                 {
-                    string json = File.ReadAllText(Application.persistentDataPath + "/"+file.Name);
+                    Debug.Log("GetExistingProfiles - " + file.Name);
+
+                    string json = File.ReadAllText(Application.persistentDataPath + "/" + file.Name);
                     SaveData data = JsonUtility.FromJson<SaveData>(json);
 
                     existingProfiles.Add(data.Profile);
+
                 }
-                catch
-                {
-                    Debug.Log("Cannot access " + Application.persistentDataPath + " - PlayerLocal data not saved");
-                }
+                ExistingProfiles = existingProfiles.OrderBy(p => p.PlayerName).ToList();
             }
-            ExistingProfiles = existingProfiles.OrderBy(p => p.PlayerName).ToList();
+            catch
+            {
+                Debug.Log("Cannot access " + Application.persistentDataPath + " - PlayerLocal data not saved");
+                ExistingProfiles = new List<ProfileData>(){ HeroData.Profile };
+            }
         }
-        
-        public void SaveProfile(ProfileData profile)
+
+    public void SaveProfile(ProfileData profile)
         {
             SaveData data = new SaveData();
 
@@ -166,14 +169,14 @@ namespace HeroStory
 
                     //Debug.Log("Load data " + data.Profile.PlayerID);
 
-                    return data ?? new SaveData();
+                    return data ?? HeroData;
                 }
             }
             catch
             {
                 Debug.Log("Cannot access " + Application.persistentDataPath + " - PlayerLocal data not saved");
             }
-            return new SaveData();
+            return HeroData;
         }
 
         #endregion

@@ -38,9 +38,12 @@ namespace HeroStory
             }
             else if (other.CompareTag("TheBall") && !m_DoorScript.IsChecked)
             {
-                m_IsChecked = true;
-                m_DoorScript.ChangeNbChecked(1);
-                GetComponent<MeshRenderer>().material = m_CheckedMaterial;
+                if (!m_IsChecked)
+                {
+                    m_IsChecked = true;
+                    m_DoorScript.ChangeNbChecked(1);
+                    GetComponent<MeshRenderer>().material = m_CheckedMaterial;
+                } 
             }
 
         }

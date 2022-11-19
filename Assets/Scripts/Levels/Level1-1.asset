@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1-1
   m_EditorClassIdentifier: 
   _LevelID: 1
-  _IsShootEnabled: 0
+  _LevelID_UI: Level-1-1
   _SpawnPoints:
   - {x: 0, y: 0, z: -7}
   - {x: 15, y: 0, z: -7}

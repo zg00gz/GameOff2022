@@ -49,7 +49,6 @@ namespace HeroStory
             
             m_LevelStart = Time.time;
             LevelValues.SetLanguage(PlayerLocal.Instance.HeroData.Profile.PlayerLanguage);
-            HeroController.Instance.IsShootEnabled = LevelValues.IsShootEnabled;
             m_Text_GroupLevelTitle.text = LevelValues.GroupLevelName;
             m_Text_LevelTitle.text = LevelValues.LevelName;
             m_Text_GoWord.text = LevelValues.GoWord;
@@ -109,18 +108,11 @@ namespace HeroStory
 
         public void NextStep(float targetRotation)
         {
-            //if (LevelValues.SpawnPoints.Length > m_NextStep)
-            //{
             CurrentStep = m_NextStep;
             HeroController.Instance.MoveAuto(LevelValues.SpawnPoints[m_NextStep], targetRotation);
-            //}
-            //else
-            //{
-            //    Debug.Log("Fin du niveau");
-            //}
+
             m_NextStep++;
         }
-        
         
         public void Timer()
         {

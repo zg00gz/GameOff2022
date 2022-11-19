@@ -27,10 +27,10 @@ namespace HeroStory
         public void Fire(int nbEmit)
         {
             if (m_IsFireCooldown) return;
-
-            m_ParticlesFire.Emit(nbEmit);
             m_IsFireCooldown = true;
             StartCoroutine(StopCooldownAfterTime());
+            m_ParticlesFire.Emit(nbEmit);
+            HeroController.Instance.FireBalls--;
         }
 
         IEnumerator StopCooldownAfterTime()

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace HeroStory
 {
@@ -15,6 +16,8 @@ namespace HeroStory
         // Move
         public bool IsInputBlocked;
         [SerializeField] float m_Speed = 5f;
+        private float m_SpeedInit;
+        private float m_SpeedFire = 5f;
         [SerializeField] float m_RotationSmoothTime = 0.1f;
         [SerializeField] float m_RotationSmoothVelocity;
         //[SerializeField] ParticleSystem m_Shoot;
@@ -29,7 +32,59 @@ namespace HeroStory
         public bool IsShootEnabled;
         public bool IsFightEnabled;
         public bool IsWalking;
+        [SerializeField] GameObject m_PanelFireBalls;
+        [SerializeField] GameObject m_PanelHealth;
         
+        private float m_FireBallsMax = 300;
+        private float m_FireBalls;
+        public float FireBalls
+        {
+            get { return m_FireBalls; }
+            set
+            {
+                if (value > m_FireBallsMax)
+                {
+                    m_FireBalls = m_FireBallsMax;
+                    Debug.LogError("Fireballs - Value max!");
+                }
+                else if (value < 0)
+                {
+                    m_FireBalls = 0;
+                    Debug.LogError("Fireballs - Value min!");
+                }
+                else
+                {
+                    m_FireBalls = value;
+                }
+                UpdateFireBalls();
+            }
+        }
+
+        private float m_HealthMax;
+        private float m_Health;
+        public float Health
+        {
+            get { return m_Health; }
+            set
+            {
+                if (value > m_HealthMax)
+                {
+                    m_Health = m_HealthMax;
+                    Debug.LogError("Health - Value max!");
+                }
+                else if (value < 0)
+                {
+                    m_Health = 0;
+                    Debug.LogError("Health - Value min!");
+                }
+                else
+                {
+                    m_Health = value;
+                }
+                UpdateHealth();
+            }
+        }
+
 
         void Awake()
         {
@@ -42,15 +97,16 @@ namespace HeroStory
             s_Instance = this;
 
             m_Rigidbody = GetComponent<Rigidbody>();
+            m_SpeedInit = m_Speed;
+
             m_Shoot = GetComponentInChildren<Shoot>();
+            m_PanelFireBalls.SetActive(false);
+            m_PanelHealth.SetActive(false);
         }
 
         void Update()
         {
-            //if(IsActionAvailable && Input.GetButtonDown("Jump") && !IsInputBlocked) 
-            // IsActionAvailable à utiliser pour les levier et animation spécifique ?
-            // TODO action Fire2 clique droit + Bouton X ?
-            if (!IsInputBlocked && Input.GetButtonDown("Jump"))
+            if (!IsInputBlocked && Input.GetButtonDown("Fire2")) // TODO action "Fire2" = clique droit ou B OU  "Jump" = espace ou Y
             {
                 m_ArmatureAnimation.SetTrigger("fight");
 
@@ -62,9 +118,16 @@ namespace HeroStory
                 }
             }
 
-            if(!IsInputBlocked && IsShootEnabled && Input.GetButtonDown("Fire1")) // TODO Tire Fire1 clique gauche + Bouton A ?
+            if(!IsInputBlocked && !IsFightEnabled && IsShootEnabled && Input.GetButton("Fire1")) // TODO Tire Fire1 clique gauche + Bouton A ? 
             {
+                m_Speed = m_SpeedFire;
+                m_ArmatureAnimation.SetBool("isShooting", true);
                 m_Shoot.Fire(1);
+            }
+            if(Input.GetButtonUp("Fire1"))
+            {
+                m_Speed = m_SpeedInit;
+                m_ArmatureAnimation.SetBool("isShooting", false);
             }
         }
 
@@ -74,6 +137,33 @@ namespace HeroStory
             {
                 Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
                 Move(direction);
+            }
+        }
+
+        private void UpdateFireBalls()
+        {
+            if (m_FireBalls > 0)
+            {
+                IsShootEnabled = true;
+                RectTransform panelFireBall = m_PanelFireBalls.transform.Find("remaining").GetComponent<RectTransform>();
+                panelFireBall.sizeDelta = new Vector2(panelFireBall.sizeDelta.x, m_FireBalls);
+                m_PanelFireBalls.SetActive(true);
+            }
+            else
+            {
+                IsShootEnabled = false;
+                m_PanelFireBalls.SetActive(false);
+            }
+        }
+        private void UpdateHealth()
+        {
+            if (m_Health > 0)
+            {
+                m_PanelHealth.SetActive(true);
+            }
+            else
+            {
+                m_PanelHealth.SetActive(false);
             }
         }
 
