@@ -90,6 +90,8 @@ namespace HeroStory
         {
             SaveData data = new SaveData();
 
+            if (string.IsNullOrEmpty(profile.PlayerName)) profile.PlayerName = "Hero";
+
             if (String.IsNullOrEmpty(profile.PlayerID))
             {
                 profile.PlayerID = Guid.NewGuid().ToString("N");

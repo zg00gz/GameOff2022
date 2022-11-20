@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf497794925e0c4f9d5a9821e37846a, type: 3}
+  m_Name: Level-2
+  m_EditorClassIdentifier: 
+  _LevelID: 2
+  _SpawnPoints:
+  - {x: 0, y: 0, z: -7}
+  - {x: 18, y: 0, z: -7}
+  - {x: 35, y: 0, z: -7}
+  - {x: 40, y: 0, z: 7}
+  - {x: 40, y: 0, z: 65}
+  _Time:
+  - 0
+  - 0
+  - 0
+  - 120
+  - 0
+  _RunIndex: 3
+  _RunCupTime:
+  - 40
+  - 60
+  - 100
+  _English:
+    GroupLevelName: Ground rules
+    LevelName: Always look on the bright side
+    GoWord: Let's go !
+    EndWord: Well done ! <br>Thanks for playing my game !
+  _French:
+    GroupLevelName: "R\xE8gles de base"
+    LevelName: "Regardez les choses du bon c\xF4t\xE9"
+    GoWord: Allons-y !
+    EndWord: "Bien jou\xE9 ! <br>Merci de jouer \xE0 mon jeu ! "

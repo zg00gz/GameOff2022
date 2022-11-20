@@ -16,8 +16,6 @@ namespace HeroStory
         [SerializeField]
         private int _LevelID;
         [SerializeField]
-        private string _LevelID_UI;
-        [SerializeField]
         private Vector3[] _SpawnPoints;
         [SerializeField]
         private float[] _Time;
@@ -27,7 +25,6 @@ namespace HeroStory
         private float[] _RunCupTime;
 
         public int LevelID => _LevelID;
-        public string LevelID_UI => _LevelID_UI;
         public Vector3[] SpawnPoints => _SpawnPoints;
         public float[] Time => _Time;
         public int RunIndex => _RunIndex;
