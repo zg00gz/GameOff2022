@@ -106,7 +106,7 @@ namespace HeroStory
 
         void Update()
         {
-            if (!IsInputBlocked && Input.GetButtonDown("Fire2")) // TODO action "Fire2" = clique droit ou B OU  "Jump" = espace ou Y
+            if (!IsInputBlocked && Input.GetButtonDown("Fire2"))
             {
                 m_ArmatureAnimation.SetTrigger("fight");
 
@@ -118,7 +118,7 @@ namespace HeroStory
                 }
             }
 
-            if(!IsInputBlocked && !IsFightEnabled && IsShootEnabled && Input.GetButton("Fire1")) // TODO Tire Fire1 clique gauche + Bouton A ? 
+            if(!IsInputBlocked && !IsFightEnabled && IsShootEnabled && Input.GetButton("Fire1"))
             {
                 m_Speed = m_SpeedFire;
                 m_ArmatureAnimation.SetBool("isShooting", true);

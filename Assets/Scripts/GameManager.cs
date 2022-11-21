@@ -118,7 +118,6 @@ namespace HeroStory
         {
             m_TimerStartTime = Time.time;
             string textTime = PlayerLocal.Instance.FormatTime(LevelValues.Time[m_NextStep - 1]);
-            //Debug.Log(textTime);
             m_UI_Level.DisplayTimer(textTime);
             StartCoroutine( UpdateTimer(LevelValues.Time[m_NextStep-1]) );
         }
@@ -143,9 +142,6 @@ namespace HeroStory
         {
             m_TimerEndTime = Time.time;
             IsLevelDone = true;
-            //HeroController.Instance.IsInputBlocked = true;
-
-            //HeroController.Instance.RotateAuto();
 
             float time = m_TimerEndTime - m_TimerStartTime; // TODO tester avec Pause ?
             string displayTime = PlayerLocal.Instance.FormatTime(time, true);
@@ -158,7 +154,7 @@ namespace HeroStory
                 displayTime
             );
             
-            m_UI_Level.ElapsedTimeScreen(displayTime);
+            m_UI_Level.ElapsedTimeScreen(time, displayTime);
         }
 
         void ChangePaused()
@@ -166,14 +162,12 @@ namespace HeroStory
             if (!m_Paused)
             {
                 m_Paused = true;
-                //Debug.Log("Game paused !");
                 m_UI_Level.DisplayPause();
                 Time.timeScale = 0;
             }
             else
             {
                 m_Paused = false;
-                //Debug.Log("Game unpaused !");
                 m_UI_Level.HidePause();
                 Time.timeScale = 1;
             }

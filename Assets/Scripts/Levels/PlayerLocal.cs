@@ -69,7 +69,7 @@ namespace HeroStory
 
                 foreach (var file in files)
                 {
-                    Debug.Log("GetExistingProfiles - " + file.Name);
+                    //Debug.Log("GetExistingProfiles - " + file.Name);
 
                     string json = File.ReadAllText(Application.persistentDataPath + "/" + file.Name);
                     SaveData data = JsonUtility.FromJson<SaveData>(json);

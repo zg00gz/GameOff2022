@@ -25,6 +25,7 @@ namespace HeroStory
             Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90, 0);
 
             yield return new WaitForSeconds(0.45f); // Fight animation
+            HeroController.Instance.GetComponent<FightController>().PlayPunchSounds();
 
             while (timeElapsed < lerpDuration)
             {
