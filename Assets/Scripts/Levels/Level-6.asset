@@ -35,8 +35,10 @@ MonoBehaviour:
     LevelName: Barking up the wrong tree
     GoWord: Good luck !
     EndWord: GG ! You are a star !!!
+    KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: Extinction des feux
     LevelName: Faire fausse route
     GoWord: Bonne chance !
     EndWord: ' GG ! Tu es une star !!!'
+    KillFriend: Ne tue pas tes amis !!!

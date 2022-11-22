@@ -35,8 +35,10 @@ MonoBehaviour:
     LevelName: An earful
     GoWord: Go !!!!
     EndWord: Well done !
+    KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: "Si tu \xE9choues, essaie encore"
     LevelName: Une oreille attentive
     GoWord: C'est parti !!!!
     EndWord: "Bien jou\xE9 !"
+    KillFriend: Ne tue pas tes amis !!!

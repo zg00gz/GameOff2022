@@ -40,6 +40,7 @@ namespace HeroStory
             public string LevelName;
             public string GoWord;
             public string EndWord;
+            public string KillFriend;
         }
         [SerializeField]
         private EN _English;
@@ -51,6 +52,7 @@ namespace HeroStory
             public string LevelName;
             public string GoWord;
             public string EndWord;
+            public string KillFriend;
         }
         [SerializeField]
         private FR _French;
@@ -59,11 +61,13 @@ namespace HeroStory
         private string _LevelName;
         private string _GoWord;
         private string _EndWord;
+        private string _KillFriend;
 
         public string GroupLevelName => _GroupLevelName;
         public string LevelName => _LevelName;
         public string GoWord => _GoWord;
         public string EndWord => _EndWord;
+        public string KillFriend => _KillFriend;
 
         public void SetLanguage(Lang _Language)
         {
@@ -74,6 +78,7 @@ namespace HeroStory
                     _LevelName = _English.LevelName;
                     _GoWord = _English.GoWord;
                     _EndWord = _English.EndWord;
+                    _KillFriend = _English.KillFriend;
                     break;
 
                 case Lang.FR:
@@ -81,6 +86,7 @@ namespace HeroStory
                     _LevelName = _French.LevelName;
                     _GoWord = _French.GoWord;
                     _EndWord = _French.EndWord;
+                    _KillFriend = _French.KillFriend;
                     break;
             }
         }

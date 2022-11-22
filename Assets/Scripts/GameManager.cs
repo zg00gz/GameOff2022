@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 
@@ -12,6 +13,7 @@ namespace HeroStory
         public static GameManager Instance { get { return s_Instance; } }
 
         [SerializeField] LevelData m_LevelValues;
+        [SerializeField] AudioMixer m_MasterMixer;
 
         [SerializeField] TMPro.TextMeshPro m_Text_GroupLevelTitle;
         [SerializeField] TMPro.TextMeshPro m_Text_LevelTitle;
@@ -20,15 +22,19 @@ namespace HeroStory
         [SerializeField] TMPro.TextMeshPro[] m_Text_TimeCups;
         [SerializeField] TMPro.TextMeshPro[] m_Text_TimeBest;
         [SerializeField] TMPro.TextMeshProUGUI m_Text_GoWord;
+        [SerializeField] TMPro.TextMeshProUGUI m_Text_KillFriend;
 
         [SerializeField] UI_Level m_UI_Level;
         [SerializeField] Door m_LastDoorScript;
+        [SerializeField] int m_FriendKillLimit = 2;
+
 
         private float m_LevelStart;
 
         private float m_TimerStartTime;
         private float m_TimerEndTime;
         public bool IsLevelDone;
+        private int FriendKilled;
 
         private int m_NextStep = 0;
         public  int CurrentStep;
@@ -52,6 +58,10 @@ namespace HeroStory
             m_Text_GroupLevelTitle.text = LevelValues.GroupLevelName;
             m_Text_LevelTitle.text = LevelValues.LevelName;
             m_Text_GoWord.text = LevelValues.GoWord;
+            m_Text_KillFriend.text = LevelValues.KillFriend;
+
+            m_MasterMixer.SetFloat("musicVol", PlayerLocal.Instance.HeroData.Profile.MusicVolume);
+            m_MasterMixer.SetFloat("soundVol", PlayerLocal.Instance.HeroData.Profile.SoundVolume);
 
             PlayerLocal.LevelText levelText = PlayerLocal.Instance.GetLevelText();
             m_Text_Time.text = levelText.Time;
@@ -155,6 +165,28 @@ namespace HeroStory
             );
             
             m_UI_Level.ElapsedTimeScreen(time, displayTime);
+        }
+
+        public void OnFriendKilled()
+        {
+            FriendKilled++;
+
+            if(FriendKilled >= m_FriendKillLimit)
+            {
+                // Failed
+                HeroController.Instance.IsInputBlocked = true;
+                m_UI_Level.KillFriendScreen();
+            }
+            else
+            {
+                StartCoroutine(DisplayTextKillFriend());
+            }
+        }
+        IEnumerator DisplayTextKillFriend()
+        {
+            m_Text_KillFriend.gameObject.SetActive(true);
+            yield return new WaitForSeconds(5);
+            m_Text_KillFriend.gameObject.SetActive(false);
         }
 
         void ChangePaused()

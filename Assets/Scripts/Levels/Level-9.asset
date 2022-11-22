@@ -35,8 +35,10 @@ MonoBehaviour:
     LevelName: The blind leading the blind
     GoWord: Good luck !
     EndWord: GG ! You are a star !!!
+    KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: "Si tu \xE9choues, essaie encore"
     LevelName: "L\u2019aveugle guidant l\u2019aveugle"
     GoWord: Bonne chance !
     EndWord: ' GG ! Tu es une star !!!'
+    KillFriend: Ne tue pas tes amis !!!

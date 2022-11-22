@@ -8,6 +8,7 @@ namespace HeroStory
 
     public class FightController : MonoBehaviour
     {
+
         [SerializeField] List<AudioClip> punchSounds = new List<AudioClip>();
         [SerializeField] AudioSource source;
 

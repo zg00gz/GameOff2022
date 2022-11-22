@@ -35,8 +35,10 @@ MonoBehaviour:
     LevelName: Wake the dead
     GoWord: Go !!!!
     EndWord: Well done !
+    KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: Les carottes sont cuites
     LevelName: "R\xE9veillez les morts"
     GoWord: C'est parti !!!!
     EndWord: "Bien jou\xE9 !"
+    KillFriend: Ne tue pas tes amis !!!

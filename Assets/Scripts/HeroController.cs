@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -108,13 +109,16 @@ namespace HeroStory
         {
             if (!IsInputBlocked && Input.GetButtonDown("Fire2"))
             {
-                m_ArmatureAnimation.SetTrigger("fight");
+                var fightHand = new List<string>() { "fight", "fight", "fight2" };
+                m_ArmatureAnimation.SetTrigger(fightHand[Random.Range(0, fightHand.Count)]);
 
                 if (IsActionAvailable && TargetAction != null)
                 {
                     TargetAction.GetComponent<CodePoint>()?.PlayAction();
                     TargetAction.GetComponent<PointController>()?.PlayAction();
                     TargetAction.GetComponent<VerinController>()?.PlayAction();
+
+                    AddFightForce();
                 }
             }
 
@@ -225,6 +229,23 @@ namespace HeroStory
             IsInputBlocked = false;
         }
 
-    }
+        private void AddFightForce()
+        {
+            float radius = 5.0F;
+            float power = 250.0F;
+
+            Vector3 explosionPos = transform.position;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+                // TODO si besoin force différente suivant les tags
+                if (rb != null && rb.tag != "Player")
+                    rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+            }
+        }
+        
+}
 
 }

@@ -35,8 +35,10 @@ MonoBehaviour:
     LevelName: Blind as a bat
     GoWord: Go !!!!
     EndWord: Well done !
+    KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: Extinction des feux
     LevelName: Myope comme une taupe
     GoWord: C'est parti !!!!
     EndWord: "Bien jou\xE9 !"
+    KillFriend: Ne tue pas tes amis !!!

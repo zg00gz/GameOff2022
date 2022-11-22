@@ -34,8 +34,7 @@ namespace HeroStory
 
             if (m_MaxHeath <= 0)
             {
-                // TODO
-                // if (m_IsFriend) GameManager.FriendKilled(); // Ecran failed avec message ami et bouton retry + inputblocked 
+                if (m_IsFriend) GameManager.Instance.OnFriendKilled();
 
                 // TODO play death animation
                 Destroy(gameObject);

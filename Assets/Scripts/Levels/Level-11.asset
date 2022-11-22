@@ -35,8 +35,10 @@ MonoBehaviour:
     LevelName: You snooze, you loose
     GoWord: Let's go !
     EndWord: Well done ! <br>Thanks for playing my game !
+    KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: Les carottes sont cuites
     LevelName: "Tu t'arr\xEAtes, tu perds"
     GoWord: Allons-y !
     EndWord: "Bien jou\xE9 ! <br>Merci de jouer \xE0 mon jeu ! "
+    KillFriend: Ne tue pas tes amis !!!

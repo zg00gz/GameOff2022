@@ -24,6 +24,7 @@ namespace HeroStory
             HeroController.Instance.IsActionAvailable = false;
             
             yield return new WaitForSeconds(0.4f); // Fight animation
+            HeroController.Instance.GetComponent<FightController>().PlayPunchSounds();
             m_ControllerAnimation.SetTrigger("animControl");
 
         }

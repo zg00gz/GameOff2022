@@ -35,8 +35,10 @@ MonoBehaviour:
     LevelName: Keep the ball rolling
     GoWord: Good luck !
     EndWord: GG ! You are a star !!!
+    KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: "R\xE8gles de base"
     LevelName: Faire avancer les choses
     GoWord: Bonne chance !
     EndWord: ' GG ! Tu es une star !!!'
+    KillFriend: Ne tue pas tes amis !!!

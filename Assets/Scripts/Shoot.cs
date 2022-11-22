@@ -11,6 +11,7 @@ namespace HeroStory
         [SerializeField] float m_Damage;
         [SerializeField] float m_FireRate;
         [SerializeField] ParticleSystem m_ParticlesFire;
+        [SerializeField] ParticleSystem m_ParticlesFireCollision;
 
         public List<ParticleCollisionEvent> CollisionEvents;
         public CinemachineBrain Cam;
@@ -42,6 +43,9 @@ namespace HeroStory
         void OnParticleCollision(GameObject other)
         {
             int numCollisionEvents = m_ParticlesFire.GetCollisionEvents(other, CollisionEvents);
+
+            m_ParticlesFireCollision.transform.position = CollisionEvents[0].intersection;
+            m_ParticlesFireCollision.Play();
 
             if (other.CompareTag("BigTarget"))
             {
