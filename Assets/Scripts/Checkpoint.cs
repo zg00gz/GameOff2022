@@ -12,6 +12,8 @@ namespace HeroStory
         [SerializeField] bool m_IsChecked = false;
         [SerializeField] ParticleSystem m_Particles;
         [SerializeField] Light m_CheckedLight;
+        [SerializeField] bool m_IsLightEnable;
+        [SerializeField] bool m_IsLightInvert; // To manage BadCheckpoint
 
         void Start()
         {
@@ -29,14 +31,14 @@ namespace HeroStory
                     m_IsChecked = false;
                     m_DoorScript.ChangeNbChecked(-1);
                     GetComponent<MeshRenderer>().material = m_InitialMaterial;
-                    if(m_CheckedLight) m_CheckedLight.enabled = false;
+                    if(m_CheckedLight && m_IsLightEnable) m_CheckedLight.enabled = m_IsLightInvert;
                 }
                 else
                 {
                     m_IsChecked = true;
                     m_DoorScript.ChangeNbChecked(1);
                     GetComponent<MeshRenderer>().material = m_CheckedMaterial;
-                    if (m_CheckedLight) m_CheckedLight.enabled = true;
+                    if (m_CheckedLight && m_IsLightEnable) m_CheckedLight.enabled = !m_IsLightInvert;
                 }
             }
             else if (other.CompareTag("TheBall") && !m_DoorScript.IsChecked)
@@ -46,7 +48,7 @@ namespace HeroStory
                     m_IsChecked = true;
                     m_DoorScript.ChangeNbChecked(1);
                     GetComponent<MeshRenderer>().material = m_CheckedMaterial;
-                    if (m_CheckedLight) m_CheckedLight.enabled = true;
+                    if (m_CheckedLight && m_IsLightEnable) m_CheckedLight.enabled = !m_IsLightInvert;
                 }
             }
 
@@ -54,7 +56,7 @@ namespace HeroStory
 
         private void OnDoorOpened()
         {
-            if (m_CheckedLight) m_CheckedLight.enabled = false;
+            Destroy(m_CheckedLight.gameObject);
 
             if (m_Particles != null)
             {

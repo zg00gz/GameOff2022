@@ -9,11 +9,6 @@ namespace HeroStory
     {
         [SerializeField] Door m_DoorScript;
 
-        [SerializeField] float m_HeroRotationTarget;
-        [SerializeField] Vector3 m_HeroPositionTarget;
-        private PlayableDirector m_PlayableDirector;
-        
-
         void Start()
         {
             m_PlayableDirector = GetComponent<PlayableDirector>();
@@ -25,6 +20,11 @@ namespace HeroStory
             m_PlayableDirector.Play();
         }
 
+
+
+        [SerializeField] float m_HeroRotationTarget;
+        [SerializeField] Vector3 m_HeroPositionTarget;
+        private PlayableDirector m_PlayableDirector;
 
         private void OnTriggerEnter(Collider other)
         {

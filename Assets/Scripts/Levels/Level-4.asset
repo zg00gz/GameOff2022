@@ -23,22 +23,22 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 60
+  - 180
   - 0
   _RunIndex: 3
   _RunCupTime:
-  - 25
-  - 35
-  - 50
+  - 30
+  - 60
+  - 120
   _English:
     GroupLevelName: Lights out
     LevelName: Blind as a bat
-    GoWord: Go !!!!
+    GoWord: Good night !!!!
     EndWord: Well done !
     KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: Extinction des feux
     LevelName: Myope comme une taupe
-    GoWord: C'est parti !!!!
-    EndWord: "Bien jou\xE9 !"
+    GoWord: Bonne nuit !!!!
+    EndWord: Bien vu !
     KillFriend: Ne tue pas tes amis !!!

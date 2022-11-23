@@ -46,12 +46,12 @@ namespace HeroStory
                 if (value > m_FireBallsMax)
                 {
                     m_FireBalls = m_FireBallsMax;
-                    Debug.LogError("Fireballs - Value max!");
+                    //Debug.LogError("Fireballs - Value max!");
                 }
                 else if (value < 0)
                 {
                     m_FireBalls = 0;
-                    Debug.LogError("Fireballs - Value min!");
+                    //Debug.LogError("Fireballs - Value min!");
                 }
                 else
                 {
@@ -71,12 +71,12 @@ namespace HeroStory
                 if (value > m_HealthMax)
                 {
                     m_Health = m_HealthMax;
-                    Debug.LogError("Health - Value max!");
+                    //Debug.LogError("Health - Value max!");
                 }
                 else if (value < 0)
                 {
                     m_Health = 0;
-                    Debug.LogError("Health - Value min!");
+                    //Debug.LogError("Health - Value min!");
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace HeroStory
 
         void Update()
         {
-            if (!IsInputBlocked && Input.GetButtonDown("Fire2"))
+            if (!IsInputBlocked && (Input.GetButtonDown("Fire2") || Input.GetButtonDown("Jump")) )
             {
                 var fightHand = new List<string>() { "fight", "fight", "fight2" };
                 m_ArmatureAnimation.SetTrigger(fightHand[Random.Range(0, fightHand.Count)]);
@@ -117,18 +117,18 @@ namespace HeroStory
                     TargetAction.GetComponent<CodePoint>()?.PlayAction();
                     TargetAction.GetComponent<PointController>()?.PlayAction();
                     TargetAction.GetComponent<VerinController>()?.PlayAction();
+                    TargetAction.GetComponent<LoopController>()?.PlayAction();
 
-                    AddFightForce();
+                    AddFightForce(0.45f);
                 }
             }
-
-            if(!IsInputBlocked && !IsFightEnabled && IsShootEnabled && Input.GetButton("Fire1"))
+            if(!IsInputBlocked && !IsFightEnabled && IsShootEnabled && (Input.GetButton("Fire1") || Input.GetButton("Fire3")) )
             {
                 m_Speed = m_SpeedFire;
                 m_ArmatureAnimation.SetBool("isShooting", true);
                 m_Shoot.Fire(1);
             }
-            if(Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("Fire1"))
             {
                 m_Speed = m_SpeedInit;
                 m_ArmatureAnimation.SetBool("isShooting", false);
@@ -229,8 +229,15 @@ namespace HeroStory
             IsInputBlocked = false;
         }
 
-        private void AddFightForce()
+        private void AddFightForce(float delay)
         {
+            StartCoroutine(FightForce(delay));
+            
+        }
+        IEnumerator FightForce(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
             float radius = 5.0F;
             float power = 250.0F;
 

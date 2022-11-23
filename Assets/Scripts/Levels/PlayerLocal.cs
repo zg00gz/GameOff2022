@@ -35,7 +35,6 @@ namespace HeroStory
         [System.Serializable]
         public class SaveData
         {
-            public float TotalPlayedTime;
             public ProfileData Profile;
             public List<Level> Levels;
         }
@@ -52,9 +51,10 @@ namespace HeroStory
         {
             public string PlayerID;
             public string PlayerName = "Hero";
+            public float TotalPlayedTime;
             public Lang PlayerLanguage = Lang.EN;
-            public float MusicVolume = 1.0f;
-            public float SoundVolume = 1.0f;
+            public float MusicVolume = 0.0f;
+            public float SoundVolume = 0.0f;
             public bool HearingImpaired;
         }
 
@@ -123,7 +123,6 @@ namespace HeroStory
             Debug.Log("P_ Save player level");
             SaveData data = Load(playerID);
             
-            data.TotalPlayedTime += playedTime;
             Level level = new Level
             {
                 LevelID = levelID,
@@ -265,6 +264,7 @@ namespace HeroStory
         {
             public string NewProfile;
             public string PlayerName;
+            public string TotalPlayTime;
             public string Language;
             public string MusicVolume;
             public string SoundVolume;
@@ -278,8 +278,9 @@ namespace HeroStory
             switch (HeroData.Profile.PlayerLanguage)
             {
                 case Lang.EN:
-                    menuText.NewProfile = "New profile";
+                    menuText.NewProfile = "New local profile";
                     menuText.PlayerName = "Hero name";
+                    menuText.TotalPlayTime = "Total play time";
                     menuText.Language = "Language";
                     menuText.MusicVolume = "Music";
                     menuText.SoundVolume = "Sounds";
@@ -288,8 +289,9 @@ namespace HeroStory
                     break;
 
                 case Lang.FR:
-                    menuText.NewProfile = "Nouveau profil";
+                    menuText.NewProfile = "Nouveau profil local";
                     menuText.PlayerName = "Nom du héros";
+                    menuText.TotalPlayTime = "Temps total de jeu";
                     menuText.Language = "Langue";
                     menuText.MusicVolume = "Musique";
                     menuText.SoundVolume = "Sons";
@@ -341,6 +343,15 @@ namespace HeroStory
                 float milliSeconds = (timeToDisplay % 1) * 1000;
                 return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliSeconds);
             }
+        }
+
+        public string FormatTotalTime(float timeToDisplay)
+        {
+            int hours = Mathf.FloorToInt(Mathf.FloorToInt(timeToDisplay / 3600));
+            int minutes = hours > 0 ? Mathf.FloorToInt( (timeToDisplay - hours*3600 ) / 60) : Mathf.FloorToInt(timeToDisplay / 60);
+            float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+            return string.Format("{0} h  {1} m  {2} s", hours, minutes, seconds);
         }
 
     }

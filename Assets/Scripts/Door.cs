@@ -30,7 +30,7 @@ namespace HeroStory
         public void ChangeNbChecked(int value)
         {
             m_NbChecked += value;
-            Debug.Log("m_NbChecked = " + m_NbChecked);
+            //Debug.Log("m_NbChecked = " + m_NbChecked);
 
             if (m_NbChecked >= m_NbRequired)
             {
@@ -48,7 +48,7 @@ namespace HeroStory
             if (m_NbChecked >= m_NbRequired)
             {
                 m_NbUnlocked += value;
-                Debug.Log("m_NbUnlocked = " + m_NbUnlocked);
+                //Debug.Log("m_NbUnlocked = " + m_NbUnlocked);
 
                 if (m_NbUnlocked >= m_UnlockRequired)
                 {

@@ -107,17 +107,20 @@ namespace HeroStory
             if (Input.GetKeyDown(KeyCode.M))
             {
                 if(m_Paused) ChangePaused();
+                SaveTotalPlayTime();
                 SceneManager.LoadScene("Hero-Home");
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 if (m_Paused) ChangePaused();
+                SaveTotalPlayTime();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
 
         public void NextStep(float targetRotation)
         {
+            Debug.Log("NextStep " + m_NextStep);
             CurrentStep = m_NextStep;
             HeroController.Instance.MoveAuto(LevelValues.SpawnPoints[m_NextStep], targetRotation);
 
@@ -205,9 +208,17 @@ namespace HeroStory
             }
         }
 
+
         public void GoHome()
         {
+            SaveTotalPlayTime();
             SceneManager.LoadScene("Hero-Home");
+        }
+
+        public void SaveTotalPlayTime()
+        {
+            PlayerLocal.Instance.HeroData.Profile.TotalPlayedTime += Time.time - m_LevelStart;
+            PlayerLocal.Instance.SaveProfile(PlayerLocal.Instance.HeroData.Profile);
         }
     }
 }

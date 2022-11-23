@@ -18,7 +18,18 @@ namespace HeroStory
         [SerializeField] ParticleSystem m_DestroyParticule;
         [SerializeField] Animator m_DestroyAnimation;
         [SerializeField] bool m_IsFriend;
+        private bool m_IsDead;
+
+        private Collider m_Collider;
+        private Rigidbody m_Rb;
+
         // RespawnTime ?
+
+        private void Start()
+        {
+            m_Collider = GetComponent<Collider>();
+            m_Rb = GetComponent<Rigidbody>();
+        }
 
         public void TakeDamage(float damage)
         {
@@ -32,12 +43,26 @@ namespace HeroStory
             //    audioSource.Play(); => Mettre sur other dans script health ou autre
             //m_DamageSound.Play();
 
-            if (m_MaxHeath <= 0)
+            if (m_MaxHeath <= 0 && !m_IsDead)
             {
-                if (m_IsFriend) GameManager.Instance.OnFriendKilled();
+                m_IsDead = true;
 
-                // TODO play death animation
-                Destroy(gameObject);
+                if (m_IsFriend) GameManager.Instance.OnFriendKilled();
+                if (m_DestroyParticule) m_DestroyParticule.Play();
+
+                m_Collider.enabled = false;
+                if(m_Rb)
+                {
+                    m_Rb.isKinematic = false;
+                    m_Rb.detectCollisions = false;
+                }
+
+                for (var i=0; i < gameObject.transform.childCount; i++)
+                {
+                    gameObject.transform.GetChild(i).gameObject.SetActive(false);
+                }
+                Destroy(gameObject, 5.0f);
+
             }
             else
             {
