@@ -7,11 +7,11 @@ namespace HeroStory
 
     public class Loop : MonoBehaviour
     {
-
-
+        
         [SerializeField] string m_Malentendant_FR;
         [SerializeField] string m_Malentendant_EN;
         [SerializeField] TMPro.TextMeshPro m_text;
+        [SerializeField] bool m_IsManagedByTrigger; // Play with local trigger - No controller required
 
         private bool m_IsHearingImpaired;
         private AudioSource m_Loop;
@@ -39,7 +39,9 @@ namespace HeroStory
         {
             if (other.CompareTag("Player"))
             {
-                if (m_Loop.isPlaying) DisplayText();
+                if (m_IsManagedByTrigger) m_Loop.Play();
+
+                if (m_Loop.isPlaying || m_IsManagedByTrigger) DisplayText();
             }
         }
 
@@ -48,6 +50,7 @@ namespace HeroStory
             if (other.CompareTag("Player"))
             {
                 HideText();
+                if (m_IsManagedByTrigger) m_Loop.Stop();
             }
         }
     }

@@ -14,12 +14,13 @@ namespace HeroStory
         [SerializeField] int m_CheckValue; // 1 for good loop or -1 for bad loop
 
         [SerializeField] AudioSource m_loop;
-        
-        //[SerializeField] GameObject m_doorLoops;
+
+        private ParticleSystem m_notes;
 
         void Start()
         {
             m_ControllerAnimation = GetComponent<Animator>();
+            m_notes = GetComponent<ParticleSystem>();
         }
 
         public void PlayAction()
@@ -40,6 +41,7 @@ namespace HeroStory
                 m_ControllerAnimation.SetTrigger("animControl");
                 m_loop.GetComponent<Loop>().DisplayText();
                 m_loop.PlayOneShot(m_loop.clip);
+                m_notes.Play();
             }
             else if(!m_IsToggleOpen && !m_loop.isPlaying)
             {
@@ -47,6 +49,7 @@ namespace HeroStory
                 m_ControllerAnimation.SetTrigger("animControl");
                 m_loop.GetComponent<Loop>().DisplayText();
                 m_loop.Play();
+                m_notes.Play();
             }
             else if (m_IsToggleOpen && m_loop.isPlaying)
             {
@@ -72,8 +75,11 @@ namespace HeroStory
         }
         private void BackAction()
         {
-            m_loop.GetComponent<Loop>().HideText();
-            m_loop.Stop();
+            if (m_IsToggle)
+            {
+                m_loop.GetComponent<Loop>().HideText();
+                m_loop.Stop();
+            }
 
             if (m_DoorScript && m_IsToggle) 
                 m_DoorScript.ChangeNbChecked(-m_CheckValue);

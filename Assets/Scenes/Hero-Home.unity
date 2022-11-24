@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 09437a70a3837d245bbebdbffc42afe1,
     type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 17079d771a43a6543991c1ef4eab26b8,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 11982c119325b5e4eab2b05c3ed39cfe,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -250,7 +250,6 @@ GameObject:
   m_Component:
   - component: {fileID: 151209277}
   - component: {fileID: 151209276}
-  - component: {fileID: 151209275}
   - component: {fileID: 151209278}
   m_Layer: 0
   m_Name: Main Camera
@@ -259,14 +258,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &151209275
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151209274}
-  m_Enabled: 1
 --- !u!20 &151209276
 Camera:
   m_ObjectHideFlags: 0
@@ -779,10 +770,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExistingProfiles: []
   HeroData:
-    TotalPlayedTime: 0
     Profile:
       PlayerID: 
       PlayerName: Hero
+      TotalPlayedTime: 0
       PlayerLanguage: 0
       MusicVolume: 1
       SoundVolume: 1
@@ -6143,7 +6134,7 @@ PrefabInstance:
     - target: {fileID: 1363652847078215515, guid: bd3f102b43c4df44bac51f33572e927c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd3f102b43c4df44bac51f33572e927c, type: 3}

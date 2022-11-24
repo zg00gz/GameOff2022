@@ -34,11 +34,11 @@ MonoBehaviour:
     GroupLevelName: Your goose is cooked
     LevelName: Last-ditch effort
     GoWord: Good luck !
-    EndWord: GG ! You are a star !!!
+    EndWord: GG ! You are the best !!!
     KillFriend: Don't kill your friends !!!
   _French:
     GroupLevelName: Les carottes sont cuites
     LevelName: Un dernier effort
     GoWord: Bonne chance !
-    EndWord: ' GG ! Tu es une star !!!'
+    EndWord: ' GG ! Tu es le meilleur !!!'
     KillFriend: Ne tue pas tes amis !!!
