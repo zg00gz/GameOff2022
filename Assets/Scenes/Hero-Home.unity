@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03756045, g: 0.03609716, b: 0.031815577, a: 1}
+  m_IndirectSpecularColor: {r: 0.0052319043, g: 0.007649293, b: 0.012349996, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -864,12 +864,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c53bd37ff28e9794397d20fe2269c681, type: 2}
   - {fileID: 11400000, guid: 71b29ff4689582f4aaa00c434ebdc56d, type: 2}
   - {fileID: 11400000, guid: 4efc14f15ef4c154eacb7db60aeeaf5d, type: 2}
-  - {fileID: 11400000, guid: 9fe5f1bf49ff1354c9798878e318afee, type: 2}
-  - {fileID: 11400000, guid: 5f50a8728306f214a98b3bfa6a8f5d06, type: 2}
   - {fileID: 11400000, guid: 35cc9d2c3e1eb7247936b92e115c1c05, type: 2}
-  - {fileID: 11400000, guid: 9bf4ae9d14784764593844cb0455aeff, type: 2}
-  - {fileID: 11400000, guid: e21c561eb4990bb45b2e973826aa5940, type: 2}
-  - {fileID: 11400000, guid: d1ebd37c76800a844a4528a26019b195, type: 2}
   - {fileID: 11400000, guid: 606d4820166d02f4e9ad1ceabbba44f3, type: 2}
   m_MasterMixer: {fileID: 24100000, guid: e4cce67ba26a8fe4985a3fb73033e853, type: 2}
   m_ScoreLineTemplate: {fileID: 9197481963319205126, guid: b8c686fff3194a84ca745fab7394efeb,

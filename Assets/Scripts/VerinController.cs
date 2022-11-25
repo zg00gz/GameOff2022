@@ -13,7 +13,7 @@ namespace HeroStory
         [SerializeField] Verin m_Verin;
 
         [SerializeField] bool m_IsAuto;
-        [SerializeField] bool m_IsToggle;
+        //[SerializeField] bool m_IsToggle;
         [SerializeField] bool m_IsToggleOpen;
 
 

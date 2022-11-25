@@ -11,9 +11,14 @@ namespace HeroStory
         [SerializeField] int m_UnlockRequired;
         [SerializeField] PlayableDirector m_PlayableDirector;
 
+        [SerializeField] AudioClip m_OpenSound;
+        [SerializeField] AudioClip m_CloseSound;
+        private AudioSource m_AudioSource;
         private Animator m_CheckedAnimation;
         [SerializeField] int m_NbChecked;
         [SerializeField] int m_NbUnlocked;
+
+        [SerializeField] bool m_IsAlwaysOpen;
 
         public bool IsChecked;
         public bool IsOpened;
@@ -25,6 +30,7 @@ namespace HeroStory
         void Start()
         {
             m_CheckedAnimation = GetComponent<Animator>();
+            m_AudioSource = GetComponent<AudioSource>();
         }
 
         public void ChangeNbChecked(int value)
@@ -61,6 +67,8 @@ namespace HeroStory
         {
             Debug.Log("Door opened !");
             IsOpened = true;
+            if (m_IsAlwaysOpen) GetComponent<Collider>().enabled = false;
+
             m_CheckedAnimation.SetTrigger("open");
             DoorOpened?.Invoke();
         }
@@ -76,6 +84,19 @@ namespace HeroStory
                 if(m_PlayableDirector != null) m_PlayableDirector.Play();
                 DoorExit?.Invoke();
             }
+        }
+
+        // Animation event
+        private void PlaySound()
+        {
+            if(m_AudioSource)
+            {
+                if (m_CheckedAnimation.GetCurrentAnimatorStateInfo(0).speed >= 0)
+                    m_AudioSource.PlayOneShot(m_OpenSound);
+                else
+                    m_AudioSource.PlayOneShot(m_CloseSound);
+            }
+            
         }
 
     }

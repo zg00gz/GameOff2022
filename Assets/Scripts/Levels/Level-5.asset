@@ -35,10 +35,10 @@ MonoBehaviour:
     LevelName: Walls have ears
     GoWord: Time to face the music !
     EndWord: Well done ! <br>Thanks again for playing my game !
-    KillFriend: Don't kill your friends !!!
+    KillFriend: Don't shoot your friends !!!
   _French:
     GroupLevelName: Extinction des feux
     LevelName: Les murs ont des oreilles
     GoWord: En avant la musique !
     EndWord: "Bien jou\xE9 ! <br>Merci encore de jouer \xE0 mon jeu ! "
-    KillFriend: Ne tue pas tes amis !!!
+    KillFriend: Ne tire pas sur tes amis !!!

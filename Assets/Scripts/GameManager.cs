@@ -192,6 +192,11 @@ namespace HeroStory
             m_Text_KillFriend.gameObject.SetActive(false);
         }
 
+        public void OnPlayerKO()
+        {
+            m_UI_Level.KOScreen();
+        }
+
         void ChangePaused()
         {
             if (!m_Paused)

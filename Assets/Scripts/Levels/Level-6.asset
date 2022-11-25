@@ -15,30 +15,26 @@ MonoBehaviour:
   _LevelID: 6
   _SpawnPoints:
   - {x: 0, y: 0, z: -7}
-  - {x: 18, y: 0, z: -7}
-  - {x: 35, y: 0, z: -7}
-  - {x: 40, y: 0, z: 7}
+  - {x: 0, y: 0, z: 7}
   - {x: 40, y: 0, z: 65}
   _Time:
   - 0
+  - 360
   - 0
-  - 0
-  - 200
-  - 0
-  _RunIndex: 3
+  _RunIndex: 1
   _RunCupTime:
   - 60
-  - 100
-  - 180
+  - 120
+  - 250
   _English:
     GroupLevelName: Lights out
-    LevelName: Barking up the wrong tree
-    GoWord: Good luck !
+    LevelName: All roads lead to rome
+    GoWord: Let's go !
     EndWord: GG ! You are a star !!!
-    KillFriend: Don't kill your friends !!!
+    KillFriend: Don't shoot your friends !!!
   _French:
     GroupLevelName: Extinction des feux
-    LevelName: Faire fausse route
-    GoWord: Bonne chance !
+    LevelName: "Tous les chemins m\xE8nent \xE0 Rome"
+    GoWord: Allons-y !
     EndWord: ' GG ! Tu es une star !!!'
-    KillFriend: Ne tue pas tes amis !!!
+    KillFriend: Ne tire pas sur tes amis !!!

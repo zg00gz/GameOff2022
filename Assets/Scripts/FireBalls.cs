@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HeroStory
@@ -9,7 +7,8 @@ namespace HeroStory
     {
         [SerializeField] float m_fireballs = 100;
         [SerializeField] ParticleSystem m_Particles;
-        
+        [SerializeField] AudioSource m_AudioSource;
+
         private void OnTriggerEnter(Collider other)
         {
 
@@ -19,6 +18,7 @@ namespace HeroStory
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
                 m_Particles.Play();
+                m_AudioSource.Play();
                 Destroy(gameObject, 5.0f);
             }
         }

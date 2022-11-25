@@ -14,14 +14,23 @@ namespace HeroStory
         void Start()
         {
             m_Rb = GetComponent<Rigidbody>();
-            m_DoorScript.DoorExit += OnDoorExit;
+
+            if (m_DoorScript)
+                m_DoorScript.DoorExit += OnDoorExit;
+            else
+                SetNoConstraints();
         }
 
         private void OnDoorExit()
         {
-            m_Rb.constraints = RigidbodyConstraints.None;
+            SetNoConstraints();
         }
 
+        private void SetNoConstraints()
+        {
+            m_Rb.constraints = RigidbodyConstraints.None;
+
+        }
     }
 
 }

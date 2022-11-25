@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace HeroStory
 {
@@ -21,7 +20,6 @@ namespace HeroStory
         private float m_SpeedFire = 5f;
         [SerializeField] float m_RotationSmoothTime = 0.1f;
         [SerializeField] float m_RotationSmoothVelocity;
-        //[SerializeField] ParticleSystem m_Shoot;
         [SerializeField] Animator m_ArmatureAnimation;
         // Move auto
         [SerializeField] float m_AutoLerpSpeed = 4f;
@@ -61,8 +59,8 @@ namespace HeroStory
             }
         }
 
-        private float m_HealthMax;
-        private float m_Health;
+        private float m_HealthMax = 300;
+        private float m_Health = 5;
         public float Health
         {
             get { return m_Health; }
@@ -118,6 +116,7 @@ namespace HeroStory
                     TargetAction.GetComponent<PointController>()?.PlayAction();
                     TargetAction.GetComponent<VerinController>()?.PlayAction();
                     TargetAction.GetComponent<LoopController>()?.PlayAction();
+                    TargetAction.GetComponent<Caisse>()?.PlayAction();
 
                     AddFightForce(0.45f);
                 }
@@ -163,12 +162,24 @@ namespace HeroStory
         {
             if (m_Health > 0)
             {
+                RectTransform panenHealth = m_PanelHealth.transform.Find("remaining").GetComponent<RectTransform>();
+                panenHealth.sizeDelta = new Vector2(panenHealth.sizeDelta.x, m_Health);
                 m_PanelHealth.SetActive(true);
             }
             else
             {
                 m_PanelHealth.SetActive(false);
+                IsInputBlocked = true;
+                m_ArmatureAnimation.SetBool("isShooting", false);
+                m_ArmatureAnimation.SetBool("isWalking", false);
+                m_ArmatureAnimation.SetBool("isKO", true);
+                StartCoroutine(DisplayKOMessage());
             }
+        }
+        IEnumerator DisplayKOMessage()
+        {
+            yield return new WaitForSeconds(2.0f);
+            GameManager.Instance.OnPlayerKO();
         }
 
         private void Move(Vector3 direction)
@@ -249,7 +260,10 @@ namespace HeroStory
 
                 // TODO si besoin force différente suivant les tags
                 if (rb != null && rb.tag != "Player")
+                {
                     rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+                }
+                    
             }
         }
         

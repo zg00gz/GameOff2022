@@ -15,7 +15,7 @@ MonoBehaviour:
   _LevelID: 7
   _SpawnPoints:
   - {x: 0, y: 0, z: -7}
-  - {x: 15, y: 0, z: -7}
+  - {x: 18, y: 0, z: -7}
   - {x: 35, y: 0, z: -7}
   - {x: 40, y: 0, z: 7}
   - {x: 40, y: 0, z: 65}
@@ -23,22 +23,22 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 60
+  - 200
   - 0
   _RunIndex: 3
   _RunCupTime:
-  - 25
-  - 35
-  - 50
+  - 60
+  - 100
+  - 180
   _English:
-    GroupLevelName: If at first you don't succeed, try, try, again
-    LevelName: An earful
-    GoWord: Go !!!!
-    EndWord: Well done !
-    KillFriend: Don't kill your friends !!!
+    GroupLevelName: Your goose is cooked
+    LevelName: Last-ditch effort
+    GoWord: Good luck !
+    EndWord: GG ! You are the best !!!
+    KillFriend: Don't shoot your friends !!!
   _French:
-    GroupLevelName: "Si tu \xE9choues, essaie encore"
-    LevelName: Une oreille attentive
-    GoWord: C'est parti !!!!
-    EndWord: "Bien jou\xE9 !"
-    KillFriend: Ne tue pas tes amis !!!
+    GroupLevelName: Les carottes sont cuites
+    LevelName: Un dernier effort
+    GoWord: Bonne chance !
+    EndWord: ' GG ! Tu es le meilleur !!!'
+    KillFriend: Ne tire pas sur tes amis !!!

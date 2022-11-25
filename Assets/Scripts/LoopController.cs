@@ -80,6 +80,7 @@ namespace HeroStory
                 m_loop.GetComponent<Loop>().HideText();
                 m_loop.Stop();
             }
+            m_notes.Stop();
 
             if (m_DoorScript && m_IsToggle) 
                 m_DoorScript.ChangeNbChecked(-m_CheckValue);

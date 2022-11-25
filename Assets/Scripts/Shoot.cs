@@ -12,6 +12,9 @@ namespace HeroStory
         [SerializeField] float m_FireRate;
         [SerializeField] ParticleSystem m_ParticlesFire;
         [SerializeField] ParticleSystem m_ParticlesFireCollision;
+        [SerializeField] AudioClip m_FireSound;
+
+        private AudioSource m_AudioSource;
 
         public List<ParticleCollisionEvent> CollisionEvents;
         public CinemachineBrain Cam;
@@ -23,6 +26,7 @@ namespace HeroStory
         void Start()
         {
             CollisionEvents = new List<ParticleCollisionEvent>();
+            m_AudioSource = GetComponent<AudioSource>();
         }
 
         public void Fire(int nbEmit)
@@ -30,6 +34,7 @@ namespace HeroStory
             if (m_IsFireCooldown) return;
             m_IsFireCooldown = true;
             StartCoroutine(StopCooldownAfterTime());
+            m_AudioSource.PlayOneShot(m_FireSound);
             m_ParticlesFire.Emit(nbEmit);
             HeroController.Instance.FireBalls--;
         }
