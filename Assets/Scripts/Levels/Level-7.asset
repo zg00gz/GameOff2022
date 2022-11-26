@@ -15,30 +15,26 @@ MonoBehaviour:
   _LevelID: 7
   _SpawnPoints:
   - {x: 0, y: 0, z: -7}
-  - {x: 18, y: 0, z: -7}
-  - {x: 35, y: 0, z: -7}
-  - {x: 40, y: 0, z: 7}
-  - {x: 40, y: 0, z: 65}
+  - {x: 0, y: 0, z: 7}
+  - {x: 0, y: 0, z: 20}
   _Time:
   - 0
   - 0
-  - 0
-  - 200
-  - 0
-  _RunIndex: 3
+  - 350
+  _RunIndex: 2
   _RunCupTime:
-  - 60
   - 100
-  - 180
+  - 150
+  - 240
   _English:
     GroupLevelName: Your goose is cooked
     LevelName: Last-ditch effort
     GoWord: Good luck !
     EndWord: GG ! You are the best !!!
-    KillFriend: Don't shoot your friends !!!
+    KillFriend: Keep your friends alive !!!
   _French:
     GroupLevelName: Les carottes sont cuites
     LevelName: Un dernier effort
     GoWord: Bonne chance !
     EndWord: ' GG ! Tu es le meilleur !!!'
-    KillFriend: Ne tire pas sur tes amis !!!
+    KillFriend: Garde tes amis en vie !!!

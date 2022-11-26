@@ -33,7 +33,8 @@ namespace HeroStory
         public bool IsWalking;
         [SerializeField] GameObject m_PanelFireBalls;
         [SerializeField] GameObject m_PanelHealth;
-        
+        [SerializeField] Animator m_AlertHealthDecrease;
+
         private float m_FireBallsMax = 300;
         private float m_FireBalls;
         public float FireBalls
@@ -60,12 +61,14 @@ namespace HeroStory
         }
 
         private float m_HealthMax = 300;
+        private float m_HealthBeforeUpdate;
         private float m_Health = 5;
         public float Health
         {
             get { return m_Health; }
             set
             {
+                m_HealthBeforeUpdate = m_Health;
                 if (value > m_HealthMax)
                 {
                     m_Health = m_HealthMax;
@@ -160,6 +163,8 @@ namespace HeroStory
         }
         private void UpdateHealth()
         {
+            if(m_HealthBeforeUpdate > m_Health) m_AlertHealthDecrease.SetTrigger("touch");
+
             if (m_Health > 0)
             {
                 RectTransform panenHealth = m_PanelHealth.transform.Find("remaining").GetComponent<RectTransform>();

@@ -35,16 +35,16 @@ namespace HeroStory
             }
             transform.rotation = targetRotation;
 
-            Debug.Log("PlayRotation - " + transform.eulerAngles.y + " - " + m_RotationChecked + " - " + m_RotationChecked);
+            //Debug.Log("PlayRotation - " + transform.eulerAngles.y + " - " + m_RotationChecked + " - " + m_RotationChecked);
             if (m_IsChecked && Mathf.RoundToInt(transform.eulerAngles.y) != m_RotationChecked) // Values inspector : 0, 90, ,-180, -90 => reals eulerAngles values to set => 0, 90, 180, 270
             {
-                Debug.Log("Unchecked");
+                //Debug.Log("Unchecked");
                 m_IsChecked = false;
                 m_DoorScript.ChangeNbChecked(-1);
             }
             else if (!m_IsChecked && Mathf.RoundToInt(transform.eulerAngles.y) == m_RotationChecked)
             {
-                Debug.Log("Checked");
+                //Debug.Log("Checked");
                 m_IsChecked = true;
                 m_DoorScript.ChangeNbChecked(1);
             }

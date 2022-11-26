@@ -66,7 +66,7 @@ namespace HeroStory
 
         private void OnDoorOpened()
         {
-            Destroy(m_CheckedLight.gameObject);
+            if(m_CheckedLight) Destroy(m_CheckedLight.gameObject);
 
             if (m_Particles != null)
             {
