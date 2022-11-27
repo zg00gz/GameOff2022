@@ -15,10 +15,12 @@ namespace HeroStory
         [SerializeField] AudioClip m_CloseSound;
         private AudioSource m_AudioSource;
         private Animator m_CheckedAnimation;
+        [SerializeField] Animator m_CheckedAnimationExternal;
         [SerializeField] int m_NbChecked;
         [SerializeField] int m_NbUnlocked;
 
         [SerializeField] bool m_IsAlwaysOpen;
+        [SerializeField] bool m_IsNotVisible;
 
         public bool IsChecked;
         public bool IsOpened;
@@ -31,6 +33,7 @@ namespace HeroStory
         {
             m_CheckedAnimation = GetComponent<Animator>();
             m_AudioSource = GetComponent<AudioSource>();
+            if (!m_CheckedAnimation) m_CheckedAnimation = m_CheckedAnimationExternal;
         }
 
         public void ChangeNbChecked(int value)
@@ -67,9 +70,9 @@ namespace HeroStory
         {
             Debug.Log("Door opened !");
             IsOpened = true;
-            if (m_IsAlwaysOpen) GetComponent<Collider>().enabled = false;
+            if (m_IsAlwaysOpen && !m_IsNotVisible) GetComponent<Collider>().enabled = false;
 
-            m_CheckedAnimation.SetTrigger("open");
+            if(m_CheckedAnimation) m_CheckedAnimation.SetTrigger("open");
             DoorOpened?.Invoke();
         }
 
@@ -79,7 +82,7 @@ namespace HeroStory
             {
                 Debug.Log("Door closed !");
                 gameObject.GetComponent<Collider>().isTrigger = false;
-                m_CheckedAnimation.SetTrigger("close");
+                if(m_CheckedAnimation) m_CheckedAnimation.SetTrigger("close");
 
                 if(m_PlayableDirector != null) m_PlayableDirector.Play();
                 DoorExit?.Invoke();

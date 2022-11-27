@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7317930058274798692
 Transform:
@@ -107,7 +107,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -322,8 +322,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Porte
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4c727e9cee89114cad439c9fc250f8a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664422482286799217, guid: b4c727e9cee89114cad439c9fc250f8a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4c727e9cee89114cad439c9fc250f8a, type: 3}
+--- !u!1 &1140533574935546507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7664422482286799217, guid: b4c727e9cee89114cad439c9fc250f8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7317930057849660410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2643162307246330881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140533574935546507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.018100942, y: 0.06, z: 0.02713877}
+  m_Center: {x: -0.0080504725, y: 0.03, z: 0.0035693883}
 --- !u!4 &7062835952841196561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b4c727e9cee89114cad439c9fc250f8a,
@@ -407,8 +436,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortePilier (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c942e6dfa20094f9f269ad54b1697c, type: 3}
+--- !u!1 &6067067853705663260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7317930058082876383}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7495581259728162616
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067067853705663260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.024999999, y: 0.07, z: 0.02}
+  m_Center: {x: -0.007499985, y: 0.035, z: 0.0024999923}
 --- !u!4 &7062835952599931956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f2c942e6dfa20094f9f269ad54b1697c,
@@ -482,8 +540,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortePilier
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c942e6dfa20094f9f269ad54b1697c, type: 3}
+--- !u!1 &6067067852084012159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7317930058781772988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &933273763347804465
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067067852084012159}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.024999999, y: 0.07, z: 0.02}
+  m_Center: {x: -0.0074999924, y: 0.035, z: 0.0024999997}
 --- !u!4 &7062835951875795799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f2c942e6dfa20094f9f269ad54b1697c,
@@ -567,8 +654,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Porte
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4c727e9cee89114cad439c9fc250f8a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664422482286799217, guid: b4c727e9cee89114cad439c9fc250f8a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4c727e9cee89114cad439c9fc250f8a, type: 3}
+--- !u!1 &1140533574024568392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7664422482286799217, guid: b4c727e9cee89114cad439c9fc250f8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7317930059356763961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8078142990653622861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140533574024568392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.017079912, y: 0.06, z: 0.027405366}
+  m_Center: {x: -0.0075399494, y: 0.03, z: 0.0016768951}
 --- !u!4 &7062835951325778130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b4c727e9cee89114cad439c9fc250f8a,

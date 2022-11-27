@@ -135,6 +135,10 @@ namespace HeroStory
                 m_Speed = m_SpeedInit;
                 m_ArmatureAnimation.SetBool("isShooting", false);
             }
+            if (transform.position.y < -2)
+            {
+                GameManager.Instance.Retry();
+            }
         }
 
         void FixedUpdate()
@@ -192,7 +196,7 @@ namespace HeroStory
             if (direction.magnitude >= 0.1f && !IsFightEnabled)
             {
                 if (!IsWalking) SetIsWalking(true);
-                
+
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_RotationSmoothVelocity, m_RotationSmoothTime);
                 m_Rigidbody.MoveRotation(Quaternion.Euler(0f, angle, 0f));

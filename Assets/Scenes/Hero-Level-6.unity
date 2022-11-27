@@ -1340,7 +1340,7 @@ PrefabInstance:
     - target: {fileID: 7161288647089405655, guid: f7077263bba76e24bae438c58b63239a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7161288647089405655, guid: f7077263bba76e24bae438c58b63239a,
         type: 3}
@@ -1407,6 +1407,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1652929374}
     m_Modifications:
+    - target: {fileID: 1696180204308706241, guid: 3800f07692a95f5459a234fb6f1ec8c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6866050134594314162, guid: 3800f07692a95f5459a234fb6f1ec8c6,
         type: 3}
       propertyPath: m_Name
@@ -2132,7 +2137,7 @@ PrefabInstance:
     - target: {fileID: 8721857329437946187, guid: 3a876c9a03113a34da07a719ebbfc21b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8721857329437946187, guid: 3a876c9a03113a34da07a719ebbfc21b,
         type: 3}
@@ -2947,6 +2952,18 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1461019734}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: idle
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
@@ -4031,6 +4048,11 @@ PrefabInstance:
       propertyPath: m_Go
       value: 
       objectReference: {fileID: 1462784377}
+    - target: {fileID: 6059342059118105704, guid: 6396b855460c3f940b508bad17b89b14,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 6059342059211637347, guid: 6396b855460c3f940b508bad17b89b14,
         type: 3}
       propertyPath: m_Name
@@ -16988,7 +17010,7 @@ PrefabInstance:
     - target: {fileID: 1201073633375229637, guid: 081a94340d2272e4fb0e67177068fb3b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1201073633375229637, guid: 081a94340d2272e4fb0e67177068fb3b,
         type: 3}
@@ -17867,12 +17889,12 @@ Transform:
   m_Children:
   - {fileID: 531001801}
   - {fileID: 39641163}
+  - {fileID: 949992747}
   - {fileID: 1280688580}
   - {fileID: 223013667}
   - {fileID: 142713186}
   - {fileID: 1594757743}
   - {fileID: 1703514697}
-  - {fileID: 949992747}
   m_Father: {fileID: 186638385}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19116,7 +19138,7 @@ PrefabInstance:
     - target: {fileID: 4760204859330249273, guid: 46751d6d66312594589163bb020ff1b1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4760204859330249273, guid: 46751d6d66312594589163bb020ff1b1,
         type: 3}
@@ -20417,6 +20439,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1652929374}
     m_Modifications:
+    - target: {fileID: 1696180204308706241, guid: 3800f07692a95f5459a234fb6f1ec8c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6866050134594314162, guid: 3800f07692a95f5459a234fb6f1ec8c6,
         type: 3}
       propertyPath: m_Name
@@ -20625,7 +20652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1532840724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21119,7 +21146,7 @@ PrefabInstance:
     - target: {fileID: 7317930058274798692, guid: 60a2d2ae572cf4b49ae7249db1886632,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7317930058274798692, guid: 60a2d2ae572cf4b49ae7249db1886632,
         type: 3}
@@ -21902,7 +21929,7 @@ GameObject:
   - component: {fileID: 1703514699}
   - component: {fileID: 1703514698}
   m_Layer: 0
-  m_Name: DirectorNextStep3
+  m_Name: DirectorNextStep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21921,7 +21948,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1089171213}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1703514698
 MonoBehaviour:
@@ -22436,6 +22463,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1652929374}
     m_Modifications:
+    - target: {fileID: 1696180204308706241, guid: 3800f07692a95f5459a234fb6f1ec8c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6866050134594314162, guid: 3800f07692a95f5459a234fb6f1ec8c6,
         type: 3}
       propertyPath: m_Name

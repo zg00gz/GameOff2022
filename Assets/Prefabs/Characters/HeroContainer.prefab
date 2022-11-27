@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 10
-  m_FireRate: 0.1
+  m_FireRate: 0.2
   m_ParticlesFire: {fileID: 2368009177881868317}
   m_ParticlesFireCollision: {fileID: 0}
   m_FireSound: {fileID: 8300000, guid: 0e43d2b84b0feb848bb8f7516d7638aa, type: 3}
@@ -1158,7 +1158,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 1.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1327,7 +1327,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.08
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5922,10 +5922,11 @@ AudioSource:
   m_GameObject: {fileID: 4468871796125020079}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8298304539228634116, guid: e4cce67ba26a8fe4985a3fb73033e853,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6116,6 +6117,7 @@ MonoBehaviour:
   IsWalking: 0
   m_PanelFireBalls: {fileID: 0}
   m_PanelHealth: {fileID: 0}
+  m_AlertHealthDecrease: {fileID: 0}
 --- !u!95 &7214375861971661604
 Animator:
   serializedVersion: 4

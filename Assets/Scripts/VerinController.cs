@@ -24,7 +24,7 @@ namespace HeroStory
 
         public void PlayAction()
         {
-            Debug.Log("VerinController - PlayAction");
+            //Debug.Log("VerinController - PlayAction");
             StartCoroutine(PlayMove());
         }
         IEnumerator PlayMove()
@@ -37,24 +37,24 @@ namespace HeroStory
 
             if( (!m_IsToggleOpen || m_IsAuto) && m_Verin.IsInteractable)
             {
-                Debug.Log("VerinController - Open");
+                //Debug.Log("VerinController - Open");
                 m_VerinAnimation.SetTrigger("open");
             }
             else if( m_IsToggleOpen && m_Verin.IsInteractable)
             {
-                Debug.Log("VerinController - Close");
+                //Debug.Log("VerinController - Close");
                 m_VerinAnimation.SetTrigger("close");
             }
         }
 
         private void CheckAction()
         {
-            Debug.Log("CheckAction");
+            //Debug.Log("CheckAction");
             m_ControllerAnimation.SetTrigger("animBack");
 
             if (m_IsAuto)
             {
-                Debug.Log("VerinController - Close AUTO");
+                //Debug.Log("VerinController - Close AUTO");
                 m_VerinAnimation.SetTrigger("close");
             }
             else

@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &304390835
 Transform:
@@ -114,7 +114,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &635367125
 Transform:
@@ -262,7 +262,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1736328979523202208
 Transform:
@@ -359,7 +359,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5641107216907375779
 Transform:
@@ -498,6 +498,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortePilier
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c942e6dfa20094f9f269ad54b1697c, type: 3}
 --- !u!4 &2274906587301100435 stripped
@@ -506,6 +516,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1736328977950858360}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3000701979761964219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1736328977950858360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2047031080988853373
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000701979761964219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.025000008, y: 0.07, z: 0.026134444}
+  m_Center: {x: -0.0075000008, y: 0.035, z: -0.0005672163}
 --- !u!1001 &1736328979562097435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -583,6 +612,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortePilier (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c942e6dfa20094f9f269ad54b1697c, type: 3}
 --- !u!4 &2274906585647975664 stripped
@@ -591,6 +630,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1736328979562097435}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3000701979073463256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3583753202597603523, guid: f2c942e6dfa20094f9f269ad54b1697c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1736328979562097435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5285659321942656589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000701979073463256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.025000008, y: 0.07, z: 0.0255347}
+  m_Center: {x: -0.0075000008, y: 0.035, z: -0.00026733644}
 --- !u!1001 &5641107216903922498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -759,8 +817,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0050000027, y: 0.06, z: 0.026103662}
-  m_Center: {x: 0.0024999995, y: 0.03, z: 0.0014906074}
+  m_Size: {x: 0.015352104, y: 0.06, z: 0.026837429}
+  m_Center: {x: -0.0026760525, y: 0.03, z: 0.0011237236}
 --- !u!1001 &5641107217657361176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -929,5 +987,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0050000027, y: 0.06, z: 0.025712391}
-  m_Center: {x: 0.0025000002, y: 0.03, z: -0.002303682}
+  m_Size: {x: 0.011437227, y: 0.06, z: 0.027929237}
+  m_Center: {x: -0.00071861426, y: 0.03, z: -0.0011952573}

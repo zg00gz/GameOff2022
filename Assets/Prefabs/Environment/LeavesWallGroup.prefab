@@ -122,6 +122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeavesWallQuad
       objectReference: {fileID: 0}
+    - target: {fileID: 3080833327021095283, guid: 093c573d53522e24fa85c237a2784df1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093c573d53522e24fa85c237a2784df1, type: 3}
 --- !u!4 &3253981084902936683 stripped
@@ -141,6 +146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeavesWallQuad2
+      objectReference: {fileID: 0}
+    - target: {fileID: 29727246604905194, guid: 482a71598335b474ead00118c240fae7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 29727246604905199, guid: 482a71598335b474ead00118c240fae7,
         type: 3}
@@ -221,6 +231,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeavesWallQuad2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 29727246604905194, guid: 482a71598335b474ead00118c240fae7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 29727246604905199, guid: 482a71598335b474ead00118c240fae7,
         type: 3}
@@ -376,6 +391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeavesWallQuad (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080833327021095283, guid: 093c573d53522e24fa85c237a2784df1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093c573d53522e24fa85c237a2784df1, type: 3}

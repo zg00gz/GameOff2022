@@ -514,6 +514,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1652929374}
     m_Modifications:
+    - target: {fileID: 1696180204308706241, guid: 3800f07692a95f5459a234fb6f1ec8c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6866050134594314162, guid: 3800f07692a95f5459a234fb6f1ec8c6,
         type: 3}
       propertyPath: m_Name
@@ -14677,6 +14682,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1652929374}
     m_Modifications:
+    - target: {fileID: 1696180204308706241, guid: 3800f07692a95f5459a234fb6f1ec8c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6866050134594314162, guid: 3800f07692a95f5459a234fb6f1ec8c6,
         type: 3}
       propertyPath: m_Name
@@ -15999,7 +16009,7 @@ PrefabInstance:
     - target: {fileID: 5168648219544451304, guid: e15f51251c6bbd14988030f75bff0c3a,
         type: 3}
       propertyPath: m_Radius
-      value: 12
+      value: 312
       objectReference: {fileID: 0}
     - target: {fileID: 5168648219544451305, guid: e15f51251c6bbd14988030f75bff0c3a,
         type: 3}
@@ -16034,7 +16044,7 @@ PrefabInstance:
     - target: {fileID: 5168648219544451305, guid: e15f51251c6bbd14988030f75bff0c3a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: 5168648219544451305, guid: e15f51251c6bbd14988030f75bff0c3a,
         type: 3}
@@ -16084,7 +16094,7 @@ PrefabInstance:
     - target: {fileID: 5168648219544451306, guid: e15f51251c6bbd14988030f75bff0c3a,
         type: 3}
       propertyPath: MaxDistance
-      value: 12
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5168648219544451306, guid: e15f51251c6bbd14988030f75bff0c3a,
         type: 3}
@@ -16716,6 +16726,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1652929374}
     m_Modifications:
+    - target: {fileID: 1696180204308706241, guid: 3800f07692a95f5459a234fb6f1ec8c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6866050134594314162, guid: 3800f07692a95f5459a234fb6f1ec8c6,
         type: 3}
       propertyPath: m_Name

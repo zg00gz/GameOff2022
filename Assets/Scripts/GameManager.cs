@@ -52,7 +52,9 @@ namespace HeroStory
                 return;
             }
             s_Instance = this;
-            
+
+            Cursor.visible = false; // Hide mouse cursor
+
             m_LevelStart = Time.time;
             LevelValues.SetLanguage(PlayerLocal.Instance.HeroData.Profile.PlayerLanguage);
             m_Text_GroupLevelTitle.text = LevelValues.GroupLevelName;
@@ -112,10 +114,15 @@ namespace HeroStory
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                if (m_Paused) ChangePaused();
-                SaveTotalPlayTime();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Retry();
             }
+        }
+
+        public void Retry()
+        {
+            if (m_Paused) ChangePaused();
+            SaveTotalPlayTime();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void NextStep(float targetRotation)

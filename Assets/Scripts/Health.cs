@@ -10,22 +10,17 @@ namespace HeroStory
     public class Health : MonoBehaviour
     {
         [SerializeField] float m_MaxHeath = 100;
-        //[SerializeField] ParticleSystem m_DamageParticule;
         [SerializeField] AudioClip m_DamageSound;
-        //[SerializeField] MeshRenderer m_ShootDamageQuad;
-        //[SerializeField] Material[] m_ShootDamageMaterials;
-
         [SerializeField] AudioClip m_DestroySound;
         [SerializeField] ParticleSystem m_DestroyParticule;
         [SerializeField] Animator m_DestroyAnimation;
         [SerializeField] bool m_IsFriend;
+
         private bool m_IsDead;
 
         private Collider m_Collider;
         private Rigidbody m_Rb;
         private AudioSource m_AudioSource;
-
-        // RespawnTime ?
 
         private void Start()
         {
@@ -39,14 +34,6 @@ namespace HeroStory
             m_MaxHeath -= damage;
 
             if(m_DamageSound) m_AudioSource.PlayOneShot(m_DamageSound);
-
-            // => côté cible => modifier la texture en fonction de la vie
-            // => exemple avec pot on peut mettre un quad devant avec une texture materiau qui évolue (se brise petit à petit).
-            // Ou plus simple => une animation avec Sprite(quad) qui évolue en fonction de health en faisant apparaître des fissures et dommages :
-            // cela limiterait le nombre de texture pour le même effet 
-            //if (collision.relativeVelocity.magnitude > 2)
-            //    audioSource.Play(); => Mettre sur other dans script health ou autre
-            //m_DamageSound.Play();
 
             if (m_MaxHeath <= 0 && !m_IsDead)
             {

@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 248299963894524791}
+  - component: {fileID: 7837059506191682066}
   m_Layer: 0
   m_Name: PortailWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &248299963894524791
 Transform:
@@ -36,6 +37,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7837059506191682066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248299963894524788}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.7550955, y: 3.2894459, z: 1}
+  m_Center: {x: -3.6524825, y: 1.1447227, z: 0}
 --- !u!1001 &248299962261808248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,10 +112,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2087820608155114828, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
         type: 3}
       propertyPath: m_Name
       value: PortailMur (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20fc42d6619ce14418c2d2ad2a247b64, type: 3}
@@ -178,10 +202,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6974947145706521842, guid: 5d186b58af29a384fb5b2ec2d8b0985c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5d186b58af29a384fb5b2ec2d8b0985c,
         type: 3}
       propertyPath: m_Name
       value: PilierSupport
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5d186b58af29a384fb5b2ec2d8b0985c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d186b58af29a384fb5b2ec2d8b0985c, type: 3}
@@ -191,25 +225,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 248299962308402993}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1131329647165809248 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d186b58af29a384fb5b2ec2d8b0985c,
-    type: 3}
-  m_PrefabInstance: {fileID: 248299962308402993}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &4799537062903283864
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131329647165809248}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &248299963034358202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,10 +287,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2087820608155114828, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
         type: 3}
       propertyPath: m_Name
       value: PortailMur (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20fc42d6619ce14418c2d2ad2a247b64, type: 3}
@@ -347,10 +372,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2087820608155114828, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
         type: 3}
       propertyPath: m_Name
       value: PortailMur
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20fc42d6619ce14418c2d2ad2a247b64, type: 3}
@@ -422,10 +457,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2087820608155114828, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
         type: 3}
       propertyPath: m_Name
       value: PortailMur (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20fc42d6619ce14418c2d2ad2a247b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20fc42d6619ce14418c2d2ad2a247b64, type: 3}

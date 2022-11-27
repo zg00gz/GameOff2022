@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 namespace HeroStory
 {
 
-    public class Shoot : MonoBehaviour
+    public class ShootCarot : MonoBehaviour
     {
         [SerializeField] float m_Damage;
         [SerializeField] float m_FireRate;
@@ -17,9 +16,6 @@ namespace HeroStory
         private AudioSource m_AudioSource;
 
         public List<ParticleCollisionEvent> CollisionEvents;
-        public CinemachineBrain Cam;
-
-        public GameObject ExplosionPrefab;
 
         private bool m_IsFireCooldown;
 
@@ -34,11 +30,9 @@ namespace HeroStory
             if (m_IsFireCooldown) return;
             m_IsFireCooldown = true;
             StartCoroutine(StopCooldownAfterTime());
-            m_AudioSource.PlayOneShot(m_FireSound);
+            if(m_AudioSource) m_AudioSource.PlayOneShot(m_FireSound);
             m_ParticlesFire.Emit(nbEmit);
-            HeroController.Instance.FireBalls--;
         }
-
         IEnumerator StopCooldownAfterTime()
         {
             yield return new WaitForSeconds(m_FireRate);
@@ -52,26 +46,17 @@ namespace HeroStory
             m_ParticlesFireCollision.transform.position = CollisionEvents[0].intersection;
             m_ParticlesFireCollision.Play();
 
-            if (other.CompareTag("BigTarget"))
+            if (other.tag == "Player")
             {
-                Cam.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+                HeroController.Instance.Health -= m_Damage;
+                Vector3 force = CollisionEvents[0].velocity * 10;
+                other.GetComponent<Rigidbody>().AddForce(force);
             }
-            if (other.GetComponent<Health>() != null)
+            else if (other.GetComponent<Health>() != null)
             {
                 var health = other.GetComponent<Health>();
                 health.TakeDamage(m_Damage);
             }
-            else if(other.name == "Carotte")
-            {
-                other.GetComponent<CarotteController>().Health -= m_Damage;
-            }
-
-            if (other.GetComponent<Rigidbody>() != null)
-            {
-                Vector3 force = CollisionEvents[0].velocity * 10;
-                other.GetComponent<Rigidbody>().AddForce(force);
-            }
-
         }
     }
 }

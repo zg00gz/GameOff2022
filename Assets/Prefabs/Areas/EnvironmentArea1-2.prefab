@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &1774703402686994286
 Transform:
@@ -151,7 +151,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &1774703403962043413
 Transform:
@@ -248,7 +248,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &1774703404036561413
 Transform:
@@ -335,10 +335,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1774703402982615147}
     m_Modifications:
+    - target: {fileID: 984071614376731490, guid: d047f974b1a3bab4fa75e0a934734055,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253981084902936983, guid: d047f974b1a3bab4fa75e0a934734055,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 4239535760851616304, guid: d047f974b1a3bab4fa75e0a934734055,
         type: 3}
       propertyPath: m_Name
       value: LeavesWallGroup (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239535760851616304, guid: d047f974b1a3bab4fa75e0a934734055,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918858884716287494, guid: d047f974b1a3bab4fa75e0a934734055,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116811024641761075, guid: d047f974b1a3bab4fa75e0a934734055,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 6440863183874145354, guid: d047f974b1a3bab4fa75e0a934734055,
         type: 3}
@@ -424,6 +449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeavesWallGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239535760851616304, guid: d047f974b1a3bab4fa75e0a934734055,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6440863183874145354, guid: d047f974b1a3bab4fa75e0a934734055,
         type: 3}
