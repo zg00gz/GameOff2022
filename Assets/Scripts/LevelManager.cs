@@ -12,24 +12,26 @@ namespace HeroStory
         [SerializeField] Animator PlatformAnimation;
 
         [SerializeField] CarotteController m_CarotteController;
+        [SerializeField] Goose[] m_GoosesGardian;
         private bool m_IsStepRunning;
-        private int m_CurrentStep;
-
+        private bool m_IsBeforeStepRunning;
+        private bool m_IsCoroutineRunning;
 
         void Start()
         {
             m_Doors[0].DoorOpened += Step0_DoorOpened;
             m_Doors[1].DoorOpened += Step1_DoorOpened;
+            m_Doors[2].DoorOpened += Step2_DoorOpened;
+            m_Doors[3].DoorOpened += Step3_DoorOpened;
         }
 
-
+        
         #region step0
         public void Step0()
         {
             m_IsStepRunning = true;
-            m_CurrentStep = 0;
+            //m_CurrentStep = 0;
             m_Steps[0].SetActive(true);
-            StartCoroutine(PlayCarotteShootPlayer());
         }
         private void Step0_DoorOpened()
         {
@@ -38,12 +40,17 @@ namespace HeroStory
         }
         IEnumerator BeforeStep1()
         {
-            m_IsStepRunning = true;
+            m_IsBeforeStepRunning = true;
             StartCoroutine(PlayCarotteShootAll());
 
-            yield return new WaitUntil( () => m_CarotteController.Health < 1300);
-            m_IsStepRunning = false;
+            yield return new WaitUntil( () => m_CarotteController.Health <= 1400);
+            Destroy(m_Steps[0]);
+            m_IsBeforeStepRunning = false;
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+
+            GameManager.Instance.NextStep(0);
             PlatformAnimation.SetTrigger("up");
+            yield return new WaitUntil( () => !HeroController.Instance.IsInputBlocked);
             Step1();
         }
 
@@ -54,9 +61,8 @@ namespace HeroStory
         public void Step1()
         {
             m_IsStepRunning = true;
-            m_CurrentStep = 1;
             m_Steps[1].SetActive(true);
-            StartCoroutine(PlayCarotteShootPlayer());
+            StartCoroutine(PlayCarotteShootPlayer(4.0f));
         }
         private void Step1_DoorOpened()
         {
@@ -65,40 +71,181 @@ namespace HeroStory
         }
         IEnumerator BeforeStep2()
         {
-            m_IsStepRunning = true;
-            StartCoroutine(PlayCarotteShootAll());
+            m_IsBeforeStepRunning = true;
+            StartCoroutine(PlayCarotteShootPlayer());
 
-            yield return new WaitUntil(() => m_CarotteController.Health < 1000);
-            m_IsStepRunning = false;
+            yield return new WaitUntil(() => m_CarotteController.Health <= 1100);
+            Destroy(m_Steps[1]);
+            m_IsBeforeStepRunning = false;
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+
+            GameManager.Instance.NextStep(0);
             PlatformAnimation.SetTrigger("up");
-            //Step2();
+            yield return new WaitUntil(() => !HeroController.Instance.IsInputBlocked);
+
+            Step2();
         }
 
         #endregion
 
-        IEnumerator PlayCarotteShootPlayer()
+        #region step2
+
+        public void Step2()
         {
-            yield return new WaitForSeconds(Random.Range(0.5f, 3.0f));
+            m_IsStepRunning = true;
+            m_Steps[2].SetActive(true);
+            StartCoroutine(PlayCarotteShootSky(4.0f));
+        }
+        private void Step2_DoorOpened()
+        {
+            m_IsStepRunning = false;
+            StartCoroutine(BeforeStep3());
+        }
+        IEnumerator BeforeStep3()
+        {
+            m_IsBeforeStepRunning = true;
+            StartCoroutine(PlayCarotteShootSky());
+
+            yield return new WaitUntil(() => m_CarotteController.Health <= 800);
+            Destroy(m_Steps[2]);
+            m_IsBeforeStepRunning = false;
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+
+            GameManager.Instance.NextStep(0);
+            PlatformAnimation.SetTrigger("up");
+            yield return new WaitUntil(() => !HeroController.Instance.IsInputBlocked);
+
+            Step3();
+        }
+
+        #endregion
+
+        #region step3
+
+        public void Step3()
+        {
+            m_IsStepRunning = true;
+            m_Steps[3].SetActive(true);
+            StartCoroutine(PlayCarotteShootAll());
+        }
+        private void Step3_DoorOpened()
+        {
+            m_IsStepRunning = false;
+            StartCoroutine(BeforeStep4());
+        }
+        IEnumerator BeforeStep4()
+        {
+            m_IsBeforeStepRunning = true;
+            StartCoroutine(PlayCarotteShootAll());
+
+            yield return new WaitUntil(() => m_CarotteController.Health <= 500);
+            Destroy(m_Steps[3]);
+            m_IsBeforeStepRunning = false;
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+
+            Destroy(GameObject.Find("ColliderGoose"));
+            m_GoosesGardian[0].WalkToPlayer();
+            m_GoosesGardian[1].WalkToPlayer();
+
+            GameManager.Instance.NextStep(0);
+            PlatformAnimation.SetTrigger("up");
+            yield return new WaitUntil(() => !HeroController.Instance.IsInputBlocked);
+
+            Step4();
+        }
+
+        #endregion
+
+
+        #region step4
+
+        public void Step4()
+        {
+            m_IsStepRunning = true;
+            StartCoroutine(BeforeStepEnd());
+        }
+        IEnumerator BeforeStepEnd()
+        {
+            m_IsBeforeStepRunning = true;
+            //StartCoroutine(PlayCarotteShootSky());
+
+            yield return new WaitUntil(() => m_GoosesGardian[0] == null);
+            yield return new WaitUntil(() => m_GoosesGardian[1] == null);
+
+            PlatformAnimation.SetTrigger("open");
+
+            yield return new WaitUntil(() => m_CarotteController.Health <= 0);
+            m_IsBeforeStepRunning = false;
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+
+            GameManager.Instance.NextStep(0);
+            PlatformAnimation.SetTrigger("up");
+            yield return new WaitUntil(() => !HeroController.Instance.IsInputBlocked);
+
+            StepEnd();
+        }
+
+        public void StepEnd()
+        {
+
+        }
+
+        #endregion
+
+        IEnumerator PlayCarotteShootPlayer(float initialDelay = 0.0f)
+        {
+            //Debug.Log("PlayCarotteShootPlayer");
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+            m_IsCoroutineRunning = true;
+            //Debug.Log("PlayCarotteShootPlayer true");
+
+            yield return new WaitForSeconds(initialDelay);
+
+            yield return new WaitForSeconds(Random.Range(1.0f, 2.0f));
 
             m_CarotteController.ShootPlayer();
-            yield return new WaitForSeconds(Random.Range(1.5f, 3.0f));
+            yield return new WaitForSeconds(Random.Range(3.0f, 7.0f));
             m_CarotteController.StopShooting();
 
-            if (m_IsStepRunning)
+            m_IsCoroutineRunning = false;
+            //Debug.Log("PlayCarotteShootPlayer false");
+            if (m_IsStepRunning || m_IsBeforeStepRunning)
                 StartCoroutine(PlayCarotteShootPlayer());
         }
 
         IEnumerator PlayCarotteShootAll()
         {
-            yield return new WaitForSeconds(Random.Range(1.0f, 2.0f));
+            //Debug.Log("PlayCarotteShootAll");
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+            m_IsCoroutineRunning = true;
+
+            yield return new WaitForSeconds(Random.Range(0.5f, 2.0f));
 
             m_CarotteController.ShootAll();
-            yield return new WaitForSeconds(10.0f);
+            yield return new WaitForSeconds(4.0f);
 
-            if (m_IsStepRunning)
-                StartCoroutine(PlayCarotteShootPlayer());
+            m_IsCoroutineRunning = false;
+            if (m_IsStepRunning || m_IsBeforeStepRunning)
+                StartCoroutine(PlayCarotteShootAll());
         }
 
+        IEnumerator PlayCarotteShootSky(float initialDelay = 0.0f)
+        {
+            //Debug.Log("PlayCarotteShootSky");
+            yield return new WaitUntil(() => !m_IsCoroutineRunning);
+            m_IsCoroutineRunning = true;
+            //Debug.Log("PlayCarotteShootSky true");
+
+            yield return new WaitForSeconds(initialDelay);
+
+            yield return new WaitForSeconds(Random.Range(3.0f, 5.0f));
+            m_CarotteController.ShootTheSky();
+
+            m_IsCoroutineRunning = false;
+            //Debug.Log("PlayCarotteShootSky false");
+            if (m_IsStepRunning || m_IsBeforeStepRunning)
+                StartCoroutine(PlayCarotteShootSky());
+        }
     }
 
 

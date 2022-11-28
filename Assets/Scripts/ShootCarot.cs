@@ -48,7 +48,10 @@ namespace HeroStory
 
             if (other.tag == "Player")
             {
-                HeroController.Instance.Health -= m_Damage;
+                float distance = Vector3.Distance(other.transform.position, GameObject.Find("Carotte").transform.position);
+                if (distance < 1) distance = 1;
+
+                HeroController.Instance.Health -= m_Damage + 5 / distance;
                 Vector3 force = CollisionEvents[0].velocity * 10;
                 other.GetComponent<Rigidbody>().AddForce(force);
             }

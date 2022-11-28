@@ -27,10 +27,20 @@ namespace HeroStory
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        
+
+
+        private void Update()
+        {
+            if (Input.GetKey("escape"))
+            {
+                Debug.Log("Quit (Escape)");
+                Application.Quit();
+            }
+        }
+
 
         #region Player data
-        
+
         // P_IDplayer.json
         [System.Serializable]
         public class SaveData

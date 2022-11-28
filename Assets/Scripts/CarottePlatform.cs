@@ -16,9 +16,9 @@ public class CarottePlatform : MonoBehaviour
     }
 
     // Animation event
-    private void PlayOpenSound()
+    private void PlayDownSound()
     {
-        if (m_Animation.GetCurrentAnimatorStateInfo(0).speed <= 0)
+        if (m_Animation.GetCurrentAnimatorStateInfo(0).speed == -1)
         {
             m_AudioSource.PlayOneShot(m_Sound);
         }

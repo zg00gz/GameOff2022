@@ -17,15 +17,25 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -7}
   - {x: 0, y: 0, z: 7}
   - {x: 0, y: 0, z: 20}
+  - {x: 0, y: 0, z: 20}
+  - {x: 0, y: 0, z: 20}
+  - {x: 0, y: 0, z: 20}
+  - {x: 0, y: 0, z: 20}
+  - {x: 0, y: 0, z: 20}
   _Time:
   - 0
   - 0
-  - 350
+  - 420
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   _RunIndex: 2
   _RunCupTime:
-  - 100
   - 150
-  - 240
+  - 250
+  - 350
   _English:
     GroupLevelName: Your goose is cooked
     LevelName: Last-ditch effort

@@ -63,7 +63,35 @@ namespace HeroStory
             }
             else if(other.name == "Carotte")
             {
-                other.GetComponent<CarotteController>().Health -= m_Damage;
+                var health = other.GetComponent<CarotteController>().Health;
+
+                switch(GameManager.Instance.CurrentStep)
+                {
+                    case 2:
+                        // Step0
+                        if(health > 1400) other.GetComponent<CarotteController>().Health -= m_Damage;
+                        break;
+                    case 3:
+                        // Step1
+                        if (health > 1100) other.GetComponent<CarotteController>().Health -= m_Damage + 5;
+                        break;
+                    case 4:
+                        // Step2
+                        if (health > 800) other.GetComponent<CarotteController>().Health -= m_Damage + 5;
+                        break;
+                    case 5:
+                        // Step3
+                        if (health > 500) other.GetComponent<CarotteController>().Health -= m_Damage + 10;
+                        break;
+                    case 6:
+                        // Step4
+                        if (health > 0) other.GetComponent<CarotteController>().Health -= m_Damage + 10;
+                        break;
+                }
+            }
+            else if(other.name.StartsWith("Goose"))
+            {
+                other.GetComponent<Goose>().Touched();
             }
 
             if (other.GetComponent<Rigidbody>() != null)

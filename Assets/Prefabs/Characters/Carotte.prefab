@@ -285,6 +285,12 @@ MonoBehaviour:
   m_Health: 1500
   m_IsFollowingPlayer: 0
   IsAimTargetEnable: 0
+  m_TargetZ: 
+  m_IndexTargetZ: 0
+  m_Speed: 20
+  m_IsShooting_L: 0
+  m_IsShooting_R: 0
+  m_Bomb: {fileID: 4073049864470361298, guid: 9101a4c4b5aef4b468d42dc7fa57d5ea, type: 3}
 --- !u!65 &8461427662658920854
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1545,6 +1551,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ParticulesShoot Carot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240062277174957588, guid: c1c59d2d0062cb045b19bc1f721fbe7f,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240062277174957588, guid: c1c59d2d0062cb045b19bc1f721fbe7f,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c59d2d0062cb045b19bc1f721fbe7f, type: 3}

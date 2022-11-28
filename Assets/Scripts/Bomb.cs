@@ -8,10 +8,14 @@ namespace HeroStory
     public class Bomb : MonoBehaviour
     {
         [SerializeField] float m_ExplosionDamage = 50;
-        [SerializeField] float m_ExplosionDelay = 2;
+        public float ExplosionDelay = 2;
         [SerializeField] ParticleSystem m_ExplosionParticles;
+        [SerializeField] GameObject m_Meche;
 
         private bool m_IsArmed;
+        public float radius = 5.0f;
+        public float power = 50.0f;
+
         [SerializeField] AudioSource m_AudioSource;
 
         public void Armed()
@@ -27,22 +31,17 @@ namespace HeroStory
             }
         }
 
-
-        public float radius = 5.0F;
-        public float power = 10.0F;
-
         IEnumerator ExplosionArmed()
         {
             m_IsArmed = true;
-            // animation couleur clignotante
 
-            yield return new WaitForSeconds(m_ExplosionDelay);
-
-            Debug.Log("All around ! Boom !");
-            //m_ExplosionParticles.transform.position = transform.position;
+            yield return new WaitForSeconds(ExplosionDelay);
+            
             m_ExplosionParticles.Play(true);
             m_AudioSource.Play();
             GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
+            Destroy(m_Meche);
             Destroy(gameObject, 5.0f);
 
             Vector3 explosionPos = transform.position;

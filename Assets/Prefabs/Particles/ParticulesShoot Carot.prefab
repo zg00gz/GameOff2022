@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 20
-  m_FireRate: 0.5
+  m_FireRate: 0.3
   m_ParticlesFire: {fileID: 1432945930972637152}
   m_ParticlesFireCollision: {fileID: 0}
   m_FireSound: {fileID: 8300000, guid: 0e43d2b84b0feb848bb8f7516d7638aa, type: 3}

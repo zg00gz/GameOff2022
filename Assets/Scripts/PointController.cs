@@ -31,7 +31,7 @@ namespace HeroStory
 
         private void CheckAction()
         {
-            Debug.Log("CheckAction");
+            //Debug.Log("CheckAction");
             if (m_DoorScript.IsChecked)
             {
                 m_DoorScript.ChangeNbUnlocked(1);
@@ -45,7 +45,7 @@ namespace HeroStory
         }
         private void BackAction()
         {
-            Debug.Log("DoneAction");
+            //Debug.Log("DoneAction");
             HeroController.Instance.IsActionAvailable = true;
         }
 

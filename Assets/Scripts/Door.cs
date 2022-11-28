@@ -68,7 +68,7 @@ namespace HeroStory
 
         private void SetDoorOpened()
         {
-            Debug.Log("Door opened !");
+            //Debug.Log("Door opened !");
             IsOpened = true;
             if (m_IsAlwaysOpen && !m_IsNotVisible) GetComponent<Collider>().enabled = false;
 
@@ -80,7 +80,7 @@ namespace HeroStory
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Door closed !");
+                //Debug.Log("Door closed !");
                 gameObject.GetComponent<Collider>().isTrigger = false;
                 if(m_CheckedAnimation) m_CheckedAnimation.SetTrigger("close");
 

@@ -38,11 +38,14 @@ namespace HeroStory
         [SerializeField] bool m_IsFollowingPlayer;
 
         public bool IsAimTargetEnable;
-        private int[] m_TargetZ;
-        private int m_IndexTargetZ;
+        [SerializeField] int[] m_TargetZ;
+        [SerializeField] int m_IndexTargetZ;
+        [SerializeField] float m_Speed = 20.0f;
 
-        private bool m_IsShooting_L;
-        private bool m_IsShooting_R;
+        [SerializeField] bool m_IsShooting_L;
+        [SerializeField] bool m_IsShooting_R;
+
+        [SerializeField] GameObject m_Bomb;
 
 
         void Start()
@@ -60,22 +63,22 @@ namespace HeroStory
             {
                 m_Shoot_R.Fire(1);
             }
+
             if(m_IsFollowingPlayer)
             {
                 m_HeadAimTarget.transform.position = HeroController.Instance.transform.position;
             }
             else if (IsAimTargetEnable)
             {
-                float speed = 15.0f;
                 if (m_IndexTargetZ >= m_TargetZ.Length)
                 {
-                    IsAimTargetEnable = false;
+                    m_IsFollowingPlayer = true;
                     StopShooting();
                 }
                 else if (m_HeadAimTarget.transform.localPosition.z <= m_TargetZ[m_IndexTargetZ])
                 {
                     //Debug.Log(">=");
-                    m_HeadAimTarget.transform.Translate(Vector3.forward * Time.deltaTime * speed);
+                    m_HeadAimTarget.transform.Translate(Vector3.forward * Time.deltaTime * m_Speed);
 
                     if(m_HeadAimTarget.transform.localPosition.z >= m_TargetZ[m_IndexTargetZ])
                         m_IndexTargetZ++;
@@ -83,26 +86,35 @@ namespace HeroStory
                 else if (m_HeadAimTarget.transform.localPosition.z >= m_TargetZ[m_IndexTargetZ])
                 {
                     //Debug.Log("<=");
-                    m_HeadAimTarget.transform.Translate(Vector3.back * Time.deltaTime * speed);
+                    m_HeadAimTarget.transform.Translate(Vector3.back * Time.deltaTime * m_Speed);
 
                     if (m_HeadAimTarget.transform.localPosition.z <= m_TargetZ[m_IndexTargetZ])
                         m_IndexTargetZ++;
                 }
-        }
+            }
         }
 
         public void FollowPlayer(bool isFollowing)
         {
-            EnableHeadAim(isFollowing);
             m_IsFollowingPlayer = isFollowing;
         }
-
-        public void EnableHeadAim(bool enable)
+        public void EnableHeadAim()
         {
             IsAimTargetEnable = true;
+            StartCoroutine(SetWeightHeadAim());
+        }
+        IEnumerator SetWeightHeadAim()
+        {
             var constraint = m_HeadAim.GetComponent<MultiAimConstraint>();
             var sourceObjects = constraint.data.sourceObjects;
-            sourceObjects.SetWeight(0, enable ? 1f : 0f);
+            var weight = 0.0f;
+
+            while(weight < 1.0f)
+            {
+                weight += 0.1f;
+                sourceObjects.SetWeight(0, weight);
+                yield return new WaitForSeconds(0.1f);
+            }
 
             constraint.data.sourceObjects = sourceObjects;
         }
@@ -111,36 +123,30 @@ namespace HeroStory
         {
             Debug.Log("ShootPlayer()");
             m_IsFollowingPlayer = true;
-            IsAimTargetEnable = false;
             StartCoroutine(StartShootingAfterDelay(1.0f));
         }
 
         public void ShootAll()
         {
+            Debug.Log("ShootAll()");
             int[] positionsX = new int[] { 3, -3, 2, -2 };
             var positionX = positionsX[Random.Range(0, positionsX.Length)];
             m_IndexTargetZ = 0;
             m_TargetZ = new [] { positionX, -positionX, 0 };
             m_HeadAimTarget.transform.localPosition = new Vector3(-2, 0, m_HeadAimTarget.transform.localPosition.z);
-
-           IsAimTargetEnable = true;
+            
             m_IsFollowingPlayer = false;
-            m_IsShooting_L = true;
-            m_IsShooting_R = true;
-
-            StartCoroutine(StartShootingAfterDelay(1.5f));
+            StartCoroutine(StartShootingAfterDelay(0.5f));
         }
 
         public void ShootTheSky()
         {
             m_IsFollowingPlayer = false;
-            StartCoroutine(StartShootingSkyAfterDelay(1.0f));
+            StartCoroutine(StartShootingSkyAfterDelay(1.5f));
         }
 
         IEnumerator StartShootingAfterDelay(float delay)
         {
-            Debug.Log("StartShootingAfterDelay()");
-
             m_ArmatureAnimation.SetBool("isShooting", true);
             yield return new WaitForSeconds(delay);
             m_IsShooting_L = true;
@@ -154,30 +160,42 @@ namespace HeroStory
             yield return new WaitForSeconds(delay);
             m_IsShooting_L = true;
             m_IsShooting_R = false;
+
+            yield return new WaitForSeconds(1.0f);
+            m_IsShooting_L = false;
+
+            var nbBomb = Random.Range(1, 5);
+            for(var i= 0; i < nbBomb; i++)
+            {
+                Vector3 spawnPos = new Vector3(Random.Range(-25, 26), 10, Random.Range(15, 31));
+                GameObject bomb = Instantiate(m_Bomb, spawnPos, m_Bomb.transform.rotation);
+                bomb.GetComponent<Bomb>().ExplosionDelay = Random.Range(2.5f, 5.5f);
+                bomb.GetComponent<Bomb>().Armed();
+            }
         }
 
         public void StopShooting()
         {
             Debug.Log("StopShooting()");
-
-            StartCoroutine(StopShootingWithDelay(1.0f));
-        }
-        IEnumerator StopShootingWithDelay(float delayAnimation)
-        {
-            Debug.Log("StopShootingWithDelay()");
-
+            m_ArmatureAnimation.SetBool("isShooting", false);
             m_IsShooting_L = false;
             m_IsShooting_R = false;
-            yield return new WaitForSeconds(delayAnimation);
-            m_ArmatureAnimation.SetBool("isShooting", false);
+            //StartCoroutine(StopShootingWithDelay(1.0f));
         }
+        //IEnumerator StopShootingWithDelay(float delayAnimation)
+        //{
+        //    yield return new WaitForSeconds(delayAnimation);
+        //    m_IsShooting_L = false;
+        //    m_IsShooting_R = false;
+        //    m_ArmatureAnimation.SetBool("isShooting", false);
+        //}
 
         public void UpdateHealth()
         {
             if (m_Health > 0)
             {
                 RectTransform panelHealth = m_PanelHealth.transform.Find("remaining").GetComponent<RectTransform>();
-                panelHealth.sizeDelta = new Vector2(panelHealth.sizeDelta.x, m_Health * 400 / m_StartHealth);
+                panelHealth.sizeDelta = new Vector2(panelHealth.sizeDelta.x, m_Health * 300 / m_StartHealth);
                 m_PanelHealth.SetActive(true);
             }
             else

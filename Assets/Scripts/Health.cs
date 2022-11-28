@@ -55,11 +55,6 @@ namespace HeroStory
                     gameObject.transform.GetChild(i).gameObject.SetActive(false);
                 }
                 Destroy(gameObject, 5.0f);
-
-            }
-            else
-            {
-                // TODO play m_ShootAnimation + modification material du Quad
             }
         }
 

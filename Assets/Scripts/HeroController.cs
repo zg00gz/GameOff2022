@@ -68,22 +68,27 @@ namespace HeroStory
             get { return m_Health; }
             set
             {
-                m_HealthBeforeUpdate = m_Health;
-                if (value > m_HealthMax)
+                if (!IsInputBlocked) // Avoid damage during level 7 when input blocked
                 {
-                    m_Health = m_HealthMax;
-                    //Debug.LogError("Health - Value max!");
-                }
-                else if (value < 0)
-                {
-                    m_Health = 0;
-                    //Debug.LogError("Health - Value min!");
+                    m_HealthBeforeUpdate = m_Health;
+                    if (value > m_HealthMax)
+                    {
+                        m_Health = m_HealthMax;
+                        //Debug.LogError("Health - Value max!");
+                    }
+                    else if (value < 0)
+                    {
+                        m_Health = 0;
+                        //Debug.LogError("Health - Value min!");
+                    }
+                    else
+                    {
+                        m_Health = value;
+                    }
+                    UpdateHealth();
                 }
                 else
-                {
-                    m_Health = value;
-                }
-                UpdateHealth();
+                    m_Health = m_HealthBeforeUpdate;
             }
         }
 
@@ -130,15 +135,17 @@ namespace HeroStory
                 m_ArmatureAnimation.SetBool("isShooting", true);
                 m_Shoot.Fire(1);
             }
-            if (Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("Fire1") || Input.GetButtonUp("Fire3"))
             {
                 m_Speed = m_SpeedInit;
                 m_ArmatureAnimation.SetBool("isShooting", false);
             }
-            if (transform.position.y < -2)
-            {
-                GameManager.Instance.Retry();
-            }
+
+            // Si on passe à travers un collider
+            //if (transform.position.y < -2)
+            //{
+            //    GameManager.Instance.Retry();
+            //}
         }
 
         void FixedUpdate()

@@ -737,6 +737,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FondMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 4929125367007749496, guid: 90ac0266e871f734a87a23a056963f5c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ac0266e871f734a87a23a056963f5c, type: 3}
 --- !u!1 &964776676
@@ -6129,7 +6134,7 @@ PrefabInstance:
     - target: {fileID: 1363652847078215515, guid: bd3f102b43c4df44bac51f33572e927c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd3f102b43c4df44bac51f33572e927c, type: 3}
