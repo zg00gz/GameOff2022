@@ -16,6 +16,8 @@ namespace HeroStory
         [SerializeField] ShootCarot m_Shoot_R;
 
         [SerializeField] GameObject m_PanelHealth;
+        [SerializeField] ParticleSystem m_DestroyParticule;
+        [SerializeField] AudioSource m_DestroyAudioSource;
         [SerializeField] float m_Health = 1500;
         private float m_StartHealth;
         public float Health
@@ -111,24 +113,23 @@ namespace HeroStory
 
             while(weight < 1.0f)
             {
-                weight += 0.1f;
+                weight += 0.02f;
                 sourceObjects.SetWeight(0, weight);
-                yield return new WaitForSeconds(0.1f);
+                constraint.data.sourceObjects = sourceObjects;
+                yield return new WaitForSeconds(0.01f);
             }
-
-            constraint.data.sourceObjects = sourceObjects;
         }
 
         public void ShootPlayer()
         {
-            Debug.Log("ShootPlayer()");
+            //Debug.Log("ShootPlayer()");
             m_IsFollowingPlayer = true;
             StartCoroutine(StartShootingAfterDelay(1.0f));
         }
 
         public void ShootAll()
         {
-            Debug.Log("ShootAll()");
+            //Debug.Log("ShootAll()");
             int[] positionsX = new int[] { 3, -3, 2, -2 };
             var positionX = positionsX[Random.Range(0, positionsX.Length)];
             m_IndexTargetZ = 0;
@@ -164,10 +165,10 @@ namespace HeroStory
             yield return new WaitForSeconds(1.0f);
             m_IsShooting_L = false;
 
-            var nbBomb = Random.Range(1, 5);
+            var nbBomb = Random.Range(3, 8);
             for(var i= 0; i < nbBomb; i++)
             {
-                Vector3 spawnPos = new Vector3(Random.Range(-25, 26), 10, Random.Range(15, 31));
+                Vector3 spawnPos = new Vector3(Random.Range(-25, 26), 12, Random.Range(15, 31));
                 GameObject bomb = Instantiate(m_Bomb, spawnPos, m_Bomb.transform.rotation);
                 bomb.GetComponent<Bomb>().ExplosionDelay = Random.Range(2.5f, 5.5f);
                 bomb.GetComponent<Bomb>().Armed();
@@ -176,19 +177,11 @@ namespace HeroStory
 
         public void StopShooting()
         {
-            Debug.Log("StopShooting()");
+            //Debug.Log("StopShooting()");
             m_ArmatureAnimation.SetBool("isShooting", false);
             m_IsShooting_L = false;
             m_IsShooting_R = false;
-            //StartCoroutine(StopShootingWithDelay(1.0f));
         }
-        //IEnumerator StopShootingWithDelay(float delayAnimation)
-        //{
-        //    yield return new WaitForSeconds(delayAnimation);
-        //    m_IsShooting_L = false;
-        //    m_IsShooting_R = false;
-        //    m_ArmatureAnimation.SetBool("isShooting", false);
-        //}
 
         public void UpdateHealth()
         {
@@ -201,8 +194,24 @@ namespace HeroStory
             else
             {
                 m_PanelHealth.SetActive(false);
-                // TODO The end !
+                StartCoroutine(TheEnd());
             }
+        }
+
+        IEnumerator TheEnd()
+        {
+            m_DestroyAudioSource.Play();
+            m_DestroyParticule.Play();
+            yield return new WaitForSeconds(0.5f);
+            m_DestroyAudioSource.Play();
+            m_DestroyParticule.Play();
+            yield return new WaitForSeconds(0.2f);
+            gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+            m_DestroyAudioSource.Play();
+            m_DestroyParticule.Play();
+            yield return new WaitForSeconds(1.0f);
+            m_DestroyAudioSource.Play();
+            m_DestroyParticule.Play();
         }
 
     }

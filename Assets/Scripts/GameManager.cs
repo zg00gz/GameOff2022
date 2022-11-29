@@ -14,6 +14,8 @@ namespace HeroStory
 
         [SerializeField] LevelData m_LevelValues;
         [SerializeField] AudioMixer m_MasterMixer;
+        [SerializeField] AudioSource m_MusicRunEnd;
+        private AudioSource m_AudioSource;
 
         [SerializeField] TMPro.TextMeshPro m_Text_GroupLevelTitle;
         [SerializeField] TMPro.TextMeshPro m_Text_LevelTitle;
@@ -53,6 +55,7 @@ namespace HeroStory
             }
             s_Instance = this;
 
+            m_AudioSource = GetComponent<AudioSource>();
             Cursor.visible = false; // Hide mouse cursor
 
             m_LevelStart = Time.time;
@@ -108,9 +111,7 @@ namespace HeroStory
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
-                if(m_Paused) ChangePaused();
-                SaveTotalPlayTime();
-                SceneManager.LoadScene("Hero-Home");
+                GoHome();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -127,7 +128,7 @@ namespace HeroStory
 
         public void NextStep(float targetRotation)
         {
-            Debug.Log("NextStep " + m_NextStep);
+            //Debug.Log("NextStep " + m_NextStep);
             CurrentStep = m_NextStep;
             HeroController.Instance.MoveAuto(LevelValues.SpawnPoints[m_NextStep], targetRotation);
 
@@ -163,7 +164,7 @@ namespace HeroStory
             m_TimerEndTime = Time.time;
             IsLevelDone = true;
 
-            float time = m_TimerEndTime - m_TimerStartTime; // TODO tester avec Pause ?
+            float time = m_TimerEndTime - m_TimerStartTime;
             string displayTime = PlayerLocal.Instance.FormatTime(time, true);
             
             PlayerLocal.Instance.SaveLevel(
@@ -175,6 +176,17 @@ namespace HeroStory
             );
             
             m_UI_Level.ElapsedTimeScreen(time, displayTime);
+            if (m_MusicRunEnd)
+            {
+                m_AudioSource.Stop();
+                m_MusicRunEnd.Play();
+            }
+
+        }
+
+        public void GameOver()
+        {
+            OnLastDoorChecked();
         }
 
         public void OnFriendKilled()
@@ -223,6 +235,7 @@ namespace HeroStory
 
         public void GoHome()
         {
+            if (m_Paused) ChangePaused();
             SaveTotalPlayTime();
             SceneManager.LoadScene("Hero-Home");
         }

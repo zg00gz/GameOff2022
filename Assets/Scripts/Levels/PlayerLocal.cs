@@ -28,15 +28,17 @@ namespace HeroStory
             DontDestroyOnLoad(gameObject);
         }
 
-
+#if !UNITY_WEBGL
         private void Update()
         {
             if (Input.GetKey("escape"))
             {
+
                 Debug.Log("Quit (Escape)");
                 Application.Quit();
             }
         }
+#endif
 
 
         #region Player data
@@ -190,9 +192,9 @@ namespace HeroStory
             return HeroData;
         }
 
-        #endregion
+#endregion
 
-        #region Level scores
+#region Level scores
 
         // L_LevelID.json
         [System.Serializable]
@@ -256,7 +258,7 @@ namespace HeroStory
             return new LevelSaveData();
         }
 
-        #endregion
+#endregion
 
         /*
         public string FormatTime(float timeToDisplay)
@@ -268,7 +270,7 @@ namespace HeroStory
         }
         */
 
-        #region Language
+#region Language
 
         public class MenuText
         {
@@ -338,7 +340,7 @@ namespace HeroStory
             return levelText;
         }
 
-        #endregion
+#endregion
 
         public string FormatTime(float timeToDisplay, bool isWithMs = false)
         {

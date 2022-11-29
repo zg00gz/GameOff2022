@@ -8,17 +8,21 @@ public class CarottePlatform : MonoBehaviour
     private Animator m_Animation;
     [SerializeField] AudioClip m_Sound;
 
-
     void Start()
     {
         m_Animation = GetComponent<Animator>();
         m_AudioSource = GetComponent<AudioSource>();
     }
 
+    public void SetIsUp(bool value)
+    {
+        m_Animation.SetBool("isUp", value);
+    }
+
     // Animation event
     private void PlayDownSound()
     {
-        if (m_Animation.GetCurrentAnimatorStateInfo(0).speed == -1)
+        if (!m_Animation.GetBool("isUp"))
         {
             m_AudioSource.PlayOneShot(m_Sound);
         }
@@ -28,7 +32,7 @@ public class CarottePlatform : MonoBehaviour
     // Animation event
     private void PlayUpSound()
     {
-        if (m_Animation.GetCurrentAnimatorStateInfo(0).speed >= 0)
+        if (m_Animation.GetBool("isUp"))
         {
             m_AudioSource.PlayOneShot(m_Sound);
         }

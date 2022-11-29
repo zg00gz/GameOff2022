@@ -307,7 +307,8 @@ MonoBehaviour:
   m_CloseSound: {fileID: 0}
   m_NbChecked: 11
   m_NbUnlocked: 0
-  m_IsAlwaysOpen: 0
+  m_IsAlwaysOpen: 1
+  m_IsNotVisible: 0
   IsChecked: 0
   IsOpened: 0
 --- !u!65 &1736328979523202210

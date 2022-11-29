@@ -12,8 +12,6 @@ namespace HeroStory
         [SerializeField] bool m_IsRunning;
         [SerializeField] bool m_IsFollowingPlayer;
         [SerializeField] GameObject m_Player;
-        [SerializeField] float m_RotationSmoothTime = 0.1f;
-        [SerializeField] float m_RotationSmoothVelocity;
 
         private float m_SpeedRun = 10.0f;
         private float m_SpeedWalk = 2.0f;

@@ -52,7 +52,7 @@ namespace HeroStory
 
                 if (rb != null && hit.tag == "Player")
                 {
-                    Debug.Log(hit.name);
+                    //Debug.Log(hit.name);
                     HeroController.Instance.Health -= m_ExplosionDamage;
                     rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
                 }

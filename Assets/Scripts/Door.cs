@@ -15,7 +15,6 @@ namespace HeroStory
         [SerializeField] AudioClip m_CloseSound;
         private AudioSource m_AudioSource;
         private Animator m_CheckedAnimation;
-        [SerializeField] Animator m_CheckedAnimationExternal;
         [SerializeField] int m_NbChecked;
         [SerializeField] int m_NbUnlocked;
 
@@ -33,7 +32,6 @@ namespace HeroStory
         {
             m_CheckedAnimation = GetComponent<Animator>();
             m_AudioSource = GetComponent<AudioSource>();
-            if (!m_CheckedAnimation) m_CheckedAnimation = m_CheckedAnimationExternal;
         }
 
         public void ChangeNbChecked(int value)
