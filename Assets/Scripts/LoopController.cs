@@ -25,7 +25,7 @@ namespace HeroStory
 
         public void PlayAction()
         {
-            Debug.Log("LoopController - PlayAction");
+            //Debug.Log("LoopController - PlayAction");
             if (!m_DoorScript.IsOpened) StartCoroutine(PlayMoveAndClip());
         }
         IEnumerator PlayMoveAndClip()
@@ -37,7 +37,7 @@ namespace HeroStory
 
             if (!m_IsToggle && !m_loop.isPlaying)
             {
-                Debug.Log("LoopController - PlayOneShot");
+                //Debug.Log("LoopController - PlayOneShot");
                 m_ControllerAnimation.SetTrigger("animControl");
                 m_loop.GetComponent<Loop>().DisplayText();
                 m_loop.PlayOneShot(m_loop.clip);
@@ -45,7 +45,7 @@ namespace HeroStory
             }
             else if(!m_IsToggleOpen && !m_loop.isPlaying)
             {
-                Debug.Log("LoopController - Play");
+                //Debug.Log("LoopController - Play");
                 m_ControllerAnimation.SetTrigger("animControl");
                 m_loop.GetComponent<Loop>().DisplayText();
                 m_loop.Play();
@@ -53,14 +53,14 @@ namespace HeroStory
             }
             else if (m_IsToggleOpen && m_loop.isPlaying)
             {
-                Debug.Log("LoopController - Stop");
+                //Debug.Log("LoopController - Stop");
                 m_ControllerAnimation.SetTrigger("animBack");
             }
         }
 
         private void CheckAction()
         {
-            Debug.Log("CheckAction");
+            //Debug.Log("CheckAction");
             if (!m_IsToggle)
             {
                 if (m_DoorScript) m_DoorScript.ChangeNbUnlocked(1);

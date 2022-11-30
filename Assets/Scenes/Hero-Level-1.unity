@@ -9564,80 +9564,6 @@ Transform:
   m_Father: {fileID: 186638385}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1136185818
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215515, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_Name
-      value: TEST FPS
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215515, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bd3f102b43c4df44bac51f33572e927c, type: 3}
 --- !u!1001 &1148217978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10650,6 +10576,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1870859844}
+          m_TargetAssemblyTypeName: HeroStory.UI_Level, Assembly-CSharp
+          m_MethodName: DisplayTitles
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

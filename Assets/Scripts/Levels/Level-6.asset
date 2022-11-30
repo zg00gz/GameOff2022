@@ -24,7 +24,7 @@ MonoBehaviour:
   _RunIndex: 1
   _RunCupTime:
   - 80
-  - 120
+  - 150
   - 250
   _English:
     GroupLevelName: Lights out

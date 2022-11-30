@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hero-Level-4.unity
     guid: d579ed137b1c2374880f766ace49682d
+  - enabled: 1
+    path: Assets/Scenes/Hero-Level-5.unity
+    guid: 0657d5e78da3e1a47abfb1cb189168a5
+  - enabled: 1
+    path: Assets/Scenes/Hero-Level-6.unity
+    guid: 9c3886fe832f45f4e8eddf2a14f3ce3f
+  - enabled: 1
+    path: Assets/Scenes/Hero-Level-7.unity
+    guid: 6a1366b7dc699f64bbe25b37852d8ce8
   m_configObjects: {}

@@ -85,7 +85,7 @@ namespace HeroStory
                         break;
                     case 6:
                         // Step4
-                        if (health > 0) other.GetComponent<CarotteController>().Health -= m_Damage + 10;
+                        if (health > 0) other.GetComponent<CarotteController>().Health -= m_Damage + 5;
                         break;
                 }
             }

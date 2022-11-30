@@ -1221,7 +1221,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: a4ce5ffe38bd2aa4999fc5091287bc77, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16099,80 +16099,6 @@ Transform:
   m_Father: {fileID: 186638385}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1136185818
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215514, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215515, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_Name
-      value: TEST FPS
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363652847078215515, guid: bd3f102b43c4df44bac51f33572e927c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bd3f102b43c4df44bac51f33572e927c, type: 3}
 --- !u!1001 &1148217978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16703,7 +16629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1231142159
 Transform:
   m_ObjectHideFlags: 0
@@ -16751,7 +16677,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 15
+  m_Intensity: 0.5
   m_Range: 20
   m_SpotAngle: 80.48059
   m_InnerSpotAngle: 60.912193
@@ -17842,7 +17768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1486839291
 Transform:
   m_ObjectHideFlags: 0
@@ -17910,7 +17836,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 15
+  m_Intensity: 0.5
   m_Range: 20
   m_SpotAngle: 80.48059
   m_InnerSpotAngle: 60.912193
@@ -18585,10 +18511,10 @@ MonoBehaviour:
             m_StringArgument: idle
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 1870859844}
+          m_TargetAssemblyTypeName: HeroStory.UI_Level, Assembly-CSharp
+          m_MethodName: DisplayTitles
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19041,7 +18967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1612456177
 Transform:
   m_ObjectHideFlags: 0
@@ -19109,7 +19035,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 15
+  m_Intensity: 0.5
   m_Range: 20
   m_SpotAngle: 57.873764
   m_InnerSpotAngle: 48.780594

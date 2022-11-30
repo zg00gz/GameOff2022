@@ -28,8 +28,8 @@ MonoBehaviour:
   _RunIndex: 3
   _RunCupTime:
   - 40
-  - 60
   - 100
+  - 200
   _English:
     GroupLevelName: Lights out
     LevelName: Walls have ears

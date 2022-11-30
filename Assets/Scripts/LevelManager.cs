@@ -41,10 +41,18 @@ namespace HeroStory
             m_AudioSources[index - 1].loop = false;
             yield return new WaitWhile(() => m_AudioSources[index-1].isPlaying);
             m_AudioSources[index].Play();
-            Debug.Log("Play " + index);
+            //Debug.Log("Play " + index);
         }
 
-        
+        IEnumerator StopMusicLoop(int index)
+        {
+            m_AudioSources[index].loop = false;
+            yield return new WaitWhile(() => m_AudioSources[index].isPlaying);
+            m_AudioSources[index].Stop();
+            //Debug.Log("Stop " + index);
+        }
+
+
         #region step0
         public void Step0()
         {
@@ -175,6 +183,8 @@ namespace HeroStory
             m_IsBeforeStepRunning = false;
             yield return new WaitUntil(() => !m_IsCoroutineRunningAll);
 
+            StartCoroutine(ChangeMusicLoop(3));
+
             GameObject.Find("ColliderGoose").GetComponent<Collider>().isTrigger = true;
             m_GoosesGardian[0].WalkToPlayer();
             m_GoosesGardian[1].WalkToPlayer();
@@ -204,6 +214,8 @@ namespace HeroStory
             yield return new WaitUntil(() => m_GoosesGardian[1] == null);
             GameObject.Find("ColliderGoose").GetComponent<Collider>().isTrigger = false;
 
+            StartCoroutine(ChangeMusicLoop(4));
+            yield return new WaitForSeconds(10.0f);
 
             PlatformAnimation.SetBool("isUp", false);
             StartCoroutine(PlayCarotteShootPlayer());
@@ -215,6 +227,8 @@ namespace HeroStory
             StopCoroutine(PlayCarotteShootPlayer());
             yield return new WaitUntil(() => !m_IsCoroutineRunningPlayer);
             m_CarotteController.StopShooting();
+
+            //StartCoroutine(StopMusicLoop(4));
 
             GameManager.Instance.GameOver();
             PlatformAnimation.SetBool("isUp", true);

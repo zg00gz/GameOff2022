@@ -8,6 +8,7 @@ TagManager:
   - BigTarget
   - Rock
   - Target
+  - Floor
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ namespace HeroStory
         {
             if (Instance != null)
             {
-                Debug.Log("PlayerLocal instance destroy");
+                Debug.Log("PlayerLocal instance..."); // Destroy
                 Destroy(gameObject);
                 return;
             }
@@ -132,7 +132,7 @@ namespace HeroStory
         
         public void SaveLevel(string playerID, int levelID, float playedTime, float time, string displayTime)
         {
-            Debug.Log("P_ Save player level");
+            //Debug.Log("P_ Save player level");
             SaveData data = Load(playerID);
             
             Level level = new Level
@@ -214,7 +214,7 @@ namespace HeroStory
 
         private void SaveLevelScore(int levelID, float time, string displayTime)
         {
-            Debug.Log("SaveLevelScore");
+            //Debug.Log("SaveLevelScore");
             LevelSaveData data = LoadScore(levelID);
             if (data.Scores == null) data.Scores = new List<LevelScore>();
             data.Scores.Add(new LevelScore()
